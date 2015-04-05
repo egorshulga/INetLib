@@ -1,0 +1,7 @@
+﻿namespace INPImport
+{
+	class BookEntity
+	{
+
+	}
+}

@@ -38,7 +38,9 @@ namespace INPImport
 		{
 			foreach (var genreString in genresStringSplitted)
 			{
-				genresIDs.Add(GenresList.getGenreID(genreString));
+				int genreID = GenresList.getGenreID(genreString);
+				if (genreID != GenresList.notFoundID)
+					genresIDs.Add(genreID);
 			}
 		}
 

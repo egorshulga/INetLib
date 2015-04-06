@@ -68,6 +68,7 @@ namespace INPImport
 			return genres[id].description;
 		}
 
+		public const int notFoundID = -1;
 		static public int getGenreID(string genreString)
 		{
 			return genres.FindIndex(entity => entity.name == genreString);

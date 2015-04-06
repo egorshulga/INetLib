@@ -106,7 +106,10 @@ namespace INPImport
 		}
 		private void setNumberInSeries(string numberInSeriesString)
 		{
-			numberInSeries = Convert.ToInt32(numberInSeriesString);
+			if (numberInSeriesString.Length == 0)
+				numberInSeries = 0;
+			else
+				numberInSeries = Convert.ToInt32(numberInSeriesString);
 		}
 		private void setFileName(string fileName)
 		{
@@ -114,11 +117,17 @@ namespace INPImport
 		}
 		private void setFileSize(string fileSizeString)
 		{
-			fileSize = Convert.ToInt32(fileSizeString);
+			if (fileSizeString.Length == 0)
+				fileSize = 0;
+			else
+				fileSize = Convert.ToInt32(fileSizeString);
 		}
 		private void setBookID(string bookIDString)
 		{
-			bookID = Convert.ToInt32(bookIDString);
+			if (bookIDString.Length == 0)
+				bookID = 0;
+			else
+				bookID = Convert.ToInt32(bookIDString);
 		}
 		private void setDeletionFlag(string deletedFlagString)
 		{

@@ -46,13 +46,33 @@ namespace INPImport
 
 		public string getAuthors()
 		{
+			return getAllAuthorsString();
+		}
+
+		private string getAllAuthorsString()
+		{
 			StringBuilder authorsStringBuilder = new StringBuilder();
-			foreach (var author in authors)
+			StringBuilder authorFullName;
+			for (int i = 0; i < authors.Count - 1; i++)
 			{
-				authorsStringBuilder.Append(author);
+				authorFullName = getAuthorFullNameStringBuilder(authors[i]);
+				authorsStringBuilder.Append(authorFullName);
 				authorsStringBuilder.Append(", ");
 			}
-			return authorsStringBuilder.ToString();
+			authorFullName = getAuthorFullNameStringBuilder(authors[authors.Count - 1]);
+			authorsStringBuilder.Append(authorFullName);
+			return authorsStringBuilder.ToString();			
+		}
+
+		private StringBuilder getAuthorFullNameStringBuilder(Author author)
+		{
+			StringBuilder authorsStringBuilder = new StringBuilder();
+			authorsStringBuilder.Append(author.surname);
+			authorsStringBuilder.Append(' ');
+			authorsStringBuilder.Append(author.name);
+			authorsStringBuilder.Append(' ');
+			authorsStringBuilder.Append(author.middleName);
+			return authorsStringBuilder;
 		}
 
 

@@ -1,16 +1,20 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.IO;
 
 namespace INPImport
 {
 	static class Program
 	{
 		[SuppressMessage("ReSharper", "InconsistentNaming")]
-		static void Main(string[] args)
+		static void Main()
 		{
 			GenresList.initialize("D:\\for-study\\coursework\\genres_fb2.glst");
 
-			Genres genres = new Genres("sf_fantasy:love_sf:popadanec:");
-			genres.printGenresDebug();
+			StreamReader reader = new StreamReader("D:\\books\\_Lib.rus.ec - Официальная\\librusec_local_fb2 - Копия\\fb2-000024-030559.inp");
+			string line = reader.ReadLine();
+
+			BookEntity book = new BookEntity(line);
+			book.printInfoDebug();
 		}
 	}
 }

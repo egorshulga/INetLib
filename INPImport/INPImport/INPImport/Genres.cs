@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 namespace INPImport
 {
@@ -43,6 +44,19 @@ namespace INPImport
 					genresIDs.Add(genreID);
 			}
 		}
+
+
+		public string getGenres()
+		{
+			StringBuilder authorsStringBuilder = new StringBuilder();
+			foreach (var genreID in genresIDs)
+			{
+				authorsStringBuilder.Append(GenresList.getGenreDescription(genreID));
+				authorsStringBuilder.Append(", ");
+			}
+			return authorsStringBuilder.ToString();
+		}
+
 
 
 		public void printGenresDebug()

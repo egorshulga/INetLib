@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace INPImport
 {
@@ -40,6 +41,18 @@ namespace INPImport
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return GetEnumerator();
+		}
+
+
+		public string getAuthors()
+		{
+			StringBuilder authorsStringBuilder = new StringBuilder();
+			foreach (var author in authors)
+			{
+				authorsStringBuilder.Append(author);
+				authorsStringBuilder.Append(", ");
+			}
+			return authorsStringBuilder.ToString();
 		}
 
 

@@ -6,6 +6,9 @@ using System.Windows.Forms;
 namespace INPImport
 {
 	[SuppressMessage("ReSharper", "ParameterHidesMember")]
+	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+	[SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
+	[SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
 	class BookEntity
 	{
 		//Для совместимости сюда включены все доступные поля.
@@ -13,7 +16,7 @@ namespace INPImport
 		public Genres genres { get; set; }				//Список жанров
 		public string title { get; set; }				//Название
 		private string seriesTitle { get; set; }		//Название серии
-		private int numberInSeries {get;set;}			//Номер книги в серии
+		private int numberInSeries { get; set;}			//Номер книги в серии
 		public string fileName { get; set; }			//Имя файла с книгой; для _Lib.rus.ec имена файлов книг и их ID совпадают
 		private int fileSize { get; set; }				//Размер файла с книгой; может не совпадать с реальным размером файла
 		public int bookID { get; set; }					//Уникальный ID книги

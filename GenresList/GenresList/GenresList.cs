@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
 
-namespace INPImport
+namespace GenresList
 {
-	static class GenresList
+	static public class GenresList
 	{
 		private static readonly List<GenresListEntity> genres = new List<GenresListEntity>();
+		public static bool isGenresListInitialized = false;
 
 		public static void initialize(string genresFilePath)
 		{
@@ -19,11 +19,10 @@ namespace INPImport
 			try
 			{
 				readGenresFromFile(genresFilePath);
+				isGenresListInitialized = true;
 			}
 			catch (Exception e)
-			{
-				MessageBox.Show(e.Message);
-			}
+			{ }
 		}
 
 		private static void readGenresFromFile(string genresFilePath)
@@ -38,13 +37,13 @@ namespace INPImport
 			string line = genresFile.ReadLine();
 			while (line != null)
 			{
-				addGenresIgnoreComments(line);
+				addGenresIgnoringComments(line);
 				line = genresFile.ReadLine();
 			}
 		}
 
 		private const int firstCharacterPosition = 0;
-		private static void addGenresIgnoreComments(string line)
+		private static void addGenresIgnoringComments(string line)
 		{
 			if (line[firstCharacterPosition] == '#') return;
 			if (line.Length == 0) return;
@@ -56,23 +55,27 @@ namespace INPImport
 
 		static public string getGenreName(int id)
 		{
-			return genres[id].name;
+			var genreName = isGenresListInitialized ? genres[id].name : null;
+			return genreName;
 		}
 
 		static public string getGenreDescription(int id)
 		{
-			return genres[id].description;
+			var genreDescription = isGenresListInitialized ? genres[id].description : null;
+			return genreDescription;
 		}
 
 		public const int notFoundID = -1;
 		static public int getGenreID(string genreString)
 		{
-			return genres.FindIndex(entity => entity.name == genreString);
+			var findIndex = isGenresListInitialized ? genres.FindIndex(entity => entity.name == genreString) : -1;
+			return findIndex;
 		}
 
 
 		public static void printGenresListDebug()
 		{
+			if (!isGenresListInitialized) return;
 			foreach (var genre in genres)
 			{
 				Console.WriteLine("{0}.{1}	{2}:	{3}", genre.genreNumber, genre.subgenreNumber, genre.name, genre.description);

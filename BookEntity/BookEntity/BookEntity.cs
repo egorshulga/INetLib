@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Windows.Forms;
 
-namespace INPImport
+namespace BookEntity
 {
 	[SuppressMessage("ReSharper", "ParameterHidesMember")]
-	[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-	[SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
-	[SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
-	class BookEntity
+	public class BookEntity
 	{
 		//Для совместимости сюда включены все доступные поля.
 		public Authors authors { get; set; }			//Список авторов
 		public Genres genres { get; set; }				//Список жанров
 		public string title { get; set; }				//Название
 		private string seriesTitle { get; set; }		//Название серии
-		private int numberInSeries { get; set;}			//Номер книги в серии
+		private int numberInSeries { get; set; }		//Номер книги в серии
 		public string fileName { get; set; }			//Имя файла с книгой; для _Lib.rus.ec имена файлов книг и их ID совпадают
 		private int fileSize { get; set; }				//Размер файла с книгой; может не совпадать с реальным размером файла
 		public int bookID { get; set; }					//Уникальный ID книги
@@ -41,15 +37,13 @@ namespace INPImport
 			{
 				splitAndParseBookInfo(bookRawInfo);
 			}
-			catch (Exception e)
-			{
-				MessageBox.Show(e.Message);
-			}
+			catch
+			{ }		
 		}
 
 		private void splitAndParseBookInfo(string bookRawInfo)
 		{
-			const char bookInfoDelimiter = (char) 0x04;
+			const char bookInfoDelimiter = (char)0x04;
 			string[] splittedBookInfo = bookRawInfo.Split(bookInfoDelimiter);
 			setBookInfo(splittedBookInfo);
 		}
@@ -163,6 +157,6 @@ namespace INPImport
 		{
 			Console.WriteLine("{0}	{1}", authors.getAuthors(), title);
 		}
-		
+
 	}
 }

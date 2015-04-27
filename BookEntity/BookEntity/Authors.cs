@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace INPImport
+namespace BookEntity
 {
-	class Authors : IEnumerable<Author>
+	public class Authors : IEnumerable<Author>
 	{
 		private readonly List<Author> authors = new List<Author>();
 

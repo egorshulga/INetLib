@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace INPImport
+namespace BookEntity
 {
-	class Genres
+	public class Genres
 	{
-		//вместо названий жанров используются их ID
+		//Genres IDs are used instead of their names.
+		//Names can be easily obtained via GenresList class (it should be initialized before)
 		private readonly List<int> genresIDs = new List<int>();
 
 		public Genres(string genresString)
@@ -39,8 +40,8 @@ namespace INPImport
 		{
 			foreach (var genreString in genresStringSplitted)
 			{
-				int genreID = GenresList.getGenreID(genreString);
-				if (genreID != GenresList.notFoundID)
+				int genreID = GenresList.GenresList.getGenreID(genreString);
+				if (genreID != GenresList.GenresList.notFoundID)
 					genresIDs.Add(genreID);
 			}
 		}
@@ -51,7 +52,7 @@ namespace INPImport
 			StringBuilder authorsStringBuilder = new StringBuilder();
 			foreach (var genreID in genresIDs)
 			{
-				authorsStringBuilder.Append(GenresList.getGenreDescription(genreID));
+				authorsStringBuilder.Append(GenresList.GenresList.getGenreDescription(genreID));
 				authorsStringBuilder.Append(", ");
 			}
 			return authorsStringBuilder.ToString();
@@ -63,7 +64,7 @@ namespace INPImport
 		{
 			foreach (var id in genresIDs)
 			{
-				Console.WriteLine("{0}	{1}	{2}", id, GenresList.getGenreName(id), GenresList.getGenreDescription(id));
+				Console.WriteLine("{0}	{1}	{2}", id, GenresList.GenresList.getGenreName(id), GenresList.GenresList.getGenreDescription(id));
 			}
 		}
 	}

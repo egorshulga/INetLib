@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace INPImport
+namespace GenresList
 {
 	class GenresListEntity
 	{

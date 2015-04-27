@@ -7,7 +7,7 @@ namespace GenresList
 	static public class GenresList
 	{
 		private static readonly List<GenresListEntity> genres = new List<GenresListEntity>();
-		public static bool isGenresListInitialized = false;
+		private static bool isGenresListInitialized = false;
 
 		public static void initialize(string genresFilePath)
 		{

@@ -32,6 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BookEntity">
+      <HintPath>..\..\BookEntity\BookEntity\bin\Release\BookEntity.dll</HintPath>
+    </Reference>
+    <Reference Include="GenresList">
+      <HintPath>..\..\GenresList\GenresList\bin\Release\GenresList.dll</HintPath>
+    </Reference>
+    <Reference Include="InpxImport">
+      <HintPath>..\..\InpxImport\InpxImport\bin\Release\InpxImport.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

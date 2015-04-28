@@ -35,7 +35,7 @@ namespace BookEntity
 
 		public IEnumerator<Author> GetEnumerator()
 		{
-			return ((IEnumerable<Author>) authors).GetEnumerator();
+			return authors.GetEnumerator();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BookEntity
 {
-	public class Genres
+	public class Genres : IEnumerable<int>
 	{
 		//Genres IDs are used instead of their names.
 		//Names can be easily obtained via GenresList class (it should be initialized before)
@@ -66,6 +66,16 @@ namespace BookEntity
 			{
 				Console.WriteLine("{0}	{1}	{2}", id, GenresList.GenresList.getGenreName(id), GenresList.GenresList.getGenreDescription(id));
 			}
+		}
+
+		public IEnumerator<int> GetEnumerator()
+		{
+			return genresIDs.GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace BookEntity
 		public string surname { get; private set; }		//фамилия
 		public string name { get; private set; }		//имя
 		public string middleName { get; private set; }	//отчество
+		public string fullName { get; private set; } 
 
 		public Author(string fullName)
 		{
@@ -26,13 +27,14 @@ namespace BookEntity
 			string[] splittedFullName = fullName.Split(nameDelimiter);
 			try
 			{
-				setFullName(splittedFullName);
+				this.fullName = fullName;
+				setNameSurnameAndMiddlename(splittedFullName);
 			}
 			catch (Exception e)
 			{ }		//Something bad happened while trying to set fields of the full name
 		}
 
-		private void setFullName(string[] splittedFullName)
+		private void setNameSurnameAndMiddlename(string[] splittedFullName)
 		{
 			surname = splittedFullName[(int) Name.LastName];
 			name = splittedFullName[(int) Name.FirstName];

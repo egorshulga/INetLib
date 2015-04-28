@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace GenresList
@@ -7,7 +8,6 @@ namespace GenresList
 	static public class GenresList
 	{
 		private static readonly List<GenresListEntity> genres = new List<GenresListEntity>();
-		private static bool isGenresListInitialized = false;
 
 		public static void initialize(string genresFilePath)
 		{
@@ -19,7 +19,6 @@ namespace GenresList
 			try
 			{
 				readGenresFromFile(genresFilePath);
-				isGenresListInitialized = true;
 			}
 			catch (Exception e)
 			{ }
@@ -55,27 +54,23 @@ namespace GenresList
 
 		static public string getGenreName(int id)
 		{
-			var genreName = isGenresListInitialized ? genres[id].name : null;
-			return genreName;
+			return genres[id].name;
 		}
 
 		static public string getGenreDescription(int id)
 		{
-			var genreDescription = isGenresListInitialized ? genres[id].description : null;
-			return genreDescription;
+			return genres[id].description;
 		}
 
 		public const int notFoundID = -1;
 		static public int getGenreID(string genreString)
 		{
-			var findIndex = isGenresListInitialized ? genres.FindIndex(entity => entity.name == genreString) : -1;
-			return findIndex;
+			return genres.FindIndex(entity => entity.name == genreString);
 		}
 
 
 		public static void printGenresListDebug()
 		{
-			if (!isGenresListInitialized) return;
 			foreach (var genre in genres)
 			{
 				Console.WriteLine("{0}.{1}	{2}:	{3}", genre.genreNumber, genre.subgenreNumber, genre.name, genre.description);

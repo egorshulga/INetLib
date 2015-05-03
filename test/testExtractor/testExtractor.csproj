@@ -4,13 +4,28 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9BD1EC28-9CF9-4BF3-BE98-B922B9BD6566}</ProjectGuid>
+    <ProjectGuid>{AF917B1A-DD12-4875-8438-717AD5DE9302}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>testDBMetadata</RootNamespace>
-    <AssemblyName>testDBMetadata</AssemblyName>
+    <RootNamespace>testExtractor</RootNamespace>
+    <AssemblyName>testExtractor</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +49,11 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -47,14 +67,35 @@
       <Project>{DDB4E6EF-94DF-47F9-BBAF-A00D20FCC56E}</Project>
       <Name>BookEntity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BookExtractor\BookExtractor.csproj">
+      <Project>{9FB38250-4B54-4C5E-8A25-3750579C904B}</Project>
+      <Name>BookExtractor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\GenresList\GenresList\GenresList.csproj">
       <Project>{C18C6DB7-6EF1-412E-A59D-1E14C7CC750B}</Project>
       <Name>GenresList</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MetadataDB\MetadataDB.csproj">
+    <ProjectReference Include="..\..\MetadataDB\MetadataDB.csproj">
       <Project>{5BAC6D67-7FC9-4E3D-95E5-F2B8CE2137F7}</Project>
       <Name>MetadataDB</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

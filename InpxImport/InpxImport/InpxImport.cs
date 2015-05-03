@@ -3,19 +3,19 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 
-namespace InpxImport
+namespace INetLib
 {
 	public static class InpxImport
 	{
 		const string inpFileExtension = ".inp";
-		public static List<BookEntity.BookEntity> import(string inpxFilePath)
+		public static List<BookEntity> import(string inpxFilePath)
 		{
 			return getBooksListFromInpxFile(inpxFilePath);
 		}
 
-		private static List<BookEntity.BookEntity> getBooksListFromInpxFile(string inpxFilePath)
+		private static List<BookEntity> getBooksListFromInpxFile(string inpxFilePath)
 		{
-			List<BookEntity.BookEntity> booksList = new List<BookEntity.BookEntity>();
+			List<BookEntity> booksList = new List<BookEntity>();
 
 			ZipArchive archive = ZipFile.OpenRead(inpxFilePath);
 			foreach (var archiveEntry in archive.Entries.Where(isInpFile))
@@ -25,21 +25,27 @@ namespace InpxImport
 			return booksList;
 		}
 
-		private static List<BookEntity.BookEntity> getBookEntitiesFromInpArchiveEntry(ZipArchiveEntry archiveEntry)
+		private static List<BookEntity> getBookEntitiesFromInpArchiveEntry(ZipArchiveEntry archiveEntry)
 		{
 			StreamReader reader = new StreamReader(archiveEntry.Open());
-			List<BookEntity.BookEntity> bookEntitiesFromFile = new List<BookEntity.BookEntity>();
+			List<BookEntity> bookEntitiesFromFile = new List<BookEntity>();
 			while (!reader.EndOfStream)
 			{
 				var bookEntity = createBookEntity(reader.ReadLine());
-				bookEntitiesFromFile.Add(bookEntity);
+				bookEntity.setArchiveName(Path.ChangeExtension(archiveEntry.Name, "zip"));	//Have to initialize archiveName field outside the constructor 
+				bookEntitiesFromFile.Add(bookEntity);										//of the BookEntity class cause the constructor designed to parse book metadata
 			}
 			return bookEntitiesFromFile;
 		}
 
-		private static BookEntity.BookEntity createBookEntity(string bookData)
+		private static void setArchiveName(this BookEntity book, string archiveName)
 		{
-			return new BookEntity.BookEntity(bookData);
+			book.archiveName = archiveName;
+		}
+
+		private static BookEntity createBookEntity(string bookData)
+		{
+			return new BookEntity(bookData);
 		}
 
 		private static bool isInpFile(ZipArchiveEntry inpFile)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace BookEntity
+namespace INetLib
 {
 	[SuppressMessage("ReSharper", "ParameterHidesMember")]
 	public class BookEntity
@@ -13,7 +13,7 @@ namespace BookEntity
 		public string title { get; set; }				//Название
 		private string seriesTitle { get; set; }		//Название серии
 		private int numberInSeries { get; set; }		//Номер книги в серии
-		public string fileName { get; set; }			//Имя файла с книгой; для _Lib.rus.ec имена файлов книг и их ID совпадают
+		public string fileName { get; set; }			//Имя файла книги; для _Lib.rus.ec имена файлов книг и их ID совпадают
 		private int fileSize { get; set; }				//Размер файла с книгой; может не совпадать с реальным размером файла
 		public int bookID { get; set; }					//Уникальный ID книги
 		private bool isDeleted { get; set; }			//Признак того, что файл удален (???)
@@ -23,6 +23,7 @@ namespace BookEntity
 		private string bookRate { get; set; }			//Внешний рейтинг книги (???)
 		public string keywords { get; set; }			//Теги
 
+		public string archiveName { get; set; }			//Имя архива с файлом книги
 
 
 		public BookEntity(string bookRawInfo)

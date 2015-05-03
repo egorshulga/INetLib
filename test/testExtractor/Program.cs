@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text;
-using INetLib;
 
 namespace testExtractor
 {
@@ -9,17 +7,17 @@ namespace testExtractor
 	{
 		static void Main(string[] args)
 		{
-			GenresList.initialize(@"D:\books\_Lib.rus.ec - Официальная\genres_fb2.glst");
-			MetadataDB.initialize(@"D:\books\_Lib.rus.ec - Официальная\librusec_local_fb2.inpx");
-			BookExtractor.initialize(@"D:\books\_Lib.rus.ec - Официальная\lib.rus.ec");
+			GenresList.GenresList.initialize(@"D:\books\_Lib.rus.ec - Официальная\genres_fb2.glst");
+			MetadataDB.MetadataDB.initialize(@"D:\books\_Lib.rus.ec - Официальная\librusec_local_fb2.inpx");
+			BookExtractor.BookExtractor.initialize(@"D:\books\_Lib.rus.ec - Официальная\lib.rus.ec");
 
-			var books = MetadataDB.selectBooksByTitle("potter");
+			var books = MetadataDB.MetadataDB.selectBooksByTitle("potter");
 
-			StreamReader bookStream = new StreamReader(BookExtractor.extract(books[0]));
+			StreamReader bookStream = new StreamReader(BookExtractor.BookExtractor.extract(books[0]));
+
 
 //			while (!bookStream.EndOfStream)
 //			{
-			Console.OutputEncoding = Encoding.ASCII;
 			Console.Write("{0}", bookStream.ReadToEnd());
 //			}
 

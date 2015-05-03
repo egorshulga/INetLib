@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.IO.Compression;
 
-namespace INetLib
+namespace BookExtractor
 {
     public static class BookExtractor
     {
@@ -15,7 +15,7 @@ namespace INetLib
 		    booksStoragePath = booksStoragePathToInitialize;
 	    }
 
-	    public static Stream extract(BookEntity book)
+	    public static Stream extract(BookEntity.BookEntity book)
 	    {
 		    string archivePath = getArchivePath(book.archiveName);
 

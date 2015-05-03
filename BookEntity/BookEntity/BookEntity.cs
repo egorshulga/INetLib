@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace INetLib
+namespace BookEntity
 {
 	[SuppressMessage("ReSharper", "ParameterHidesMember")]
 	public class BookEntity

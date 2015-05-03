@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GenresList">
-      <HintPath>..\..\GenresList\GenresList\bin\Release\GenresList.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -42,6 +39,12 @@
     <Compile Include="BookEntity.cs" />
     <Compile Include="Genres.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\GenresList\GenresList\GenresList.csproj">
+      <Project>{C18C6DB7-6EF1-412E-A59D-1E14C7CC750B}</Project>
+      <Name>GenresList</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

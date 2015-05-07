@@ -11,19 +11,21 @@ namespace BookEntity
 		public Authors authors { get; set; }			//Список авторов
 		public Genres genres { get; set; }				//Список жанров
 		public string title { get; set; }				//Название
-		private string seriesTitle { get; set; }		//Название серии
-		private int numberInSeries { get; set; }		//Номер книги в серии
+		public string seriesTitle { get; set; }			//Название серии
+		public int numberInSeries { get; set; }			//Номер книги в серии
 		public string fileName { get; set; }			//Имя файла книги; для _Lib.rus.ec имена файлов книг и их ID совпадают
-		private int fileSize { get; set; }				//Размер файла с книгой; может не совпадать с реальным размером файла
+		public int fileSize { get; set; }				//Размер файла с книгой; может не совпадать с реальным размером файла
 		public int bookID { get; set; }					//Уникальный ID книги
-		private bool isDeleted { get; set; }			//Признак того, что файл удален (???)
+		public bool isDeleted { get; set; }				//Признак того, что файл удален (???)
 		public string extension { get; set; }			//Расширение файла книги
 		public string dateAdded { get; set; }			//Дата добавления файла книги
 		public string language { get; set; }			//Язык книги
-		private string bookRate { get; set; }			//Внешний рейтинг книги (???)
+		public string bookRate { get; set; }			//Внешний рейтинг книги (???)
 		public string keywords { get; set; }			//Теги
 
-		public string archiveName { get; set; }			//Имя архива с файлом книги
+		public string archiveName { get; set; }			//Имя архива с файлом книги 
+														//Поле инициализируется в момент чтения метаданных
+														//(Имя архива совпадает с именем файла с метаданными в inpx файле)
 
 
 		public BookEntity(string bookRawInfo)

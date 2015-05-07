@@ -13,13 +13,17 @@ namespace testExtractor
 
 			var books = MetadataDB.MetadataDB.selectBooksByTitle("potter");
 
+			foreach (var book in books)
+			{
+				book.printInfoDebug();
+			}
 			StreamReader bookStream = new StreamReader(BookExtractor.BookExtractor.extract(books[0]));
 
 
-//			while (!bookStream.EndOfStream)
-//			{
-			Console.Write("{0}", bookStream.ReadToEnd());
-//			}
+			while (!bookStream.EndOfStream)
+			{
+				Console.Write("{0}", bookStream.ReadToEnd());
+			}
 
 		}
 	}

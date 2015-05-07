@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace testDBMetadata
 {
@@ -25,7 +22,7 @@ namespace testDBMetadata
 			Console.WriteLine("Author search time:	{0}", timer.Elapsed);
 
 			timer.Restart();
-			books = MetadataDB.MetadataDB.selectBooksByTitle("Potter");
+			books = MetadataDB.MetadataDB.selectBooksByTitle("Поттер");
 			timer.Stop();
 			Console.WriteLine("Title search time:	{0}", timer.Elapsed);
 			foreach (var book in books)

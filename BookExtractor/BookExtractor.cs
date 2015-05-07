@@ -26,6 +26,7 @@ namespace BookExtractor
 		    return bookEntry.Open();
 	    }
 
+
 	    private static string getArchivePath(string archiveName)
 	    {
 		    return Path.Combine(booksStoragePath, archiveName);

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace MetadataDB
 {
@@ -17,36 +15,28 @@ namespace MetadataDB
 	    private static void sortByAuthorAscending()
 	    {
 		    metadataDB.Sort(
-			    (BookEntity.BookEntity entity1, BookEntity.BookEntity entity2) =>
+			    (entity1, entity2) =>
 				    string.Compare(entity1.authors.getAuthors(), entity2.authors.getAuthors(), StringComparison.Ordinal));
 	    }
 
 
-
-	    public static List<BookEntity.BookEntity> selectBooksByAuthor(string authorNameToSearch)
+		public static List<BookEntity.BookEntity> selectBooksByAuthor(string authorNameToSearch)
 		{
-			return metadataDB.Where(book => book.authors.Any(author => (author.fullName).Contains(authorNameToSearch, StringComparison.OrdinalIgnoreCase))).ToList();
+			return metadataDB.selectBooksByAuthor(authorNameToSearch);
+		}
+		public static List<BookEntity.BookEntity> selectBooksByTitle(string titleToSearch)
+		{
+			return metadataDB.selectBooksByTitle(titleToSearch);
+		}
+		public static List<BookEntity.BookEntity> selectBooksByGenre(int genreIDToSearch)
+		{
+			return metadataDB.selectBooksByGenre(genreIDToSearch);
+		}
+		public static BookEntity.BookEntity selectBookByID(int bookID)
+		{
+			return metadataDB.selectBookByID(bookID);
 		}
 
-	    public static List<BookEntity.BookEntity> selectBooksByTitle(string titleToSearch)
-	    {
-		    return metadataDB.Where(book => book.title.Contains(titleToSearch, StringComparison.CurrentCultureIgnoreCase)).ToList();
-	    }
 
-	    public static List<BookEntity.BookEntity> selectBooksByGenre(int genreIDToSearch)
-	    {
-		    return metadataDB.Where(book => book.genres.Any(genreID => genreID == genreIDToSearch)).ToList();
-	    }
-
-
-	    //Had to rewrite string.Contains method cause it does not work with case insensitive option
-		[SuppressMessage("ReSharper", "InconsistentNaming")]
-		private static bool Contains(this string source, string toCheck, StringComparison stringComparison)
-		{
-			if (string.IsNullOrEmpty(toCheck) || string.IsNullOrEmpty(source))
-				return true;	//behaviour of those official string methods is the same
-			return source.IndexOf(toCheck, stringComparison) >= 0;
-		}
-
-	}
+    }
 }

@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DDB4E6EF-94DF-47F9-BBAF-A00D20FCC56E}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{9476CA0A-27EC-4A8D-BB46-36C9E09B312E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BookEntity</RootNamespace>
-    <AssemblyName>BookEntity</AssemblyName>
+    <RootNamespace>INetLibServiceHost</RootNamespace>
+    <AssemblyName>INetLibServiceHost</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,18 +35,37 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Author.cs" />
-    <Compile Include="Authors.cs" />
-    <Compile Include="BookEntity.cs" />
-    <Compile Include="Genres.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerInitialization.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\GenresList\GenresList\GenresList.csproj">
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookExtractor\BookExtractor.csproj">
+      <Project>{9FB38250-4B54-4C5E-8A25-3750579C904B}</Project>
+      <Name>BookExtractor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GenresList\GenresList\GenresList.csproj">
       <Project>{C18C6DB7-6EF1-412E-A59D-1E14C7CC750B}</Project>
       <Name>GenresList</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MetadataDB\MetadataDB.csproj">
+      <Project>{5BAC6D67-7FC9-4E3D-95E5-F2B8CE2137F7}</Project>
+      <Name>MetadataDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCFServiceLibrary\WCFServiceLibrary.csproj">
+      <Project>{1b37298a-6cf1-429e-aecb-17fb091129e5}</Project>
+      <Name>WCFServiceLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

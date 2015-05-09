@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace BookEntity
 {
@@ -9,11 +10,16 @@ namespace BookEntity
 		MiddleName
 	};
 
+	[DataContract]
 	public class Author
 	{
+		[DataMember]
 		public string surname { get; private set; }		//фамилия
+		[DataMember]
 		public string name { get; private set; }		//имя
+		[DataMember]
 		public string middleName { get; private set; }	//отчество
+		[DataMember]
 		public string fullName { get; private set; } 
 
 		public Author(string fullName)

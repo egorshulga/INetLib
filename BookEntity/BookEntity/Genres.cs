@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace BookEntity
 {
+	[DataContract]
 	public class Genres : IEnumerable<int>
 	{
 		//Genres IDs are used instead of their names.
 		//Names can be easily obtained via GenresList class (it should be initialized before)
+		[DataMember]
 		private readonly List<int> genresIDs = new List<int>();
 
 		public Genres(string genresString)

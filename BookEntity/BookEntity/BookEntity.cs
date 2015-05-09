@@ -1,26 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 
 namespace BookEntity
 {
 	[SuppressMessage("ReSharper", "ParameterHidesMember")]
+	[DataContract]
 	public class BookEntity
 	{
 		//Для совместимости сюда включены все доступные поля.
+		[DataMember]
 		public Authors authors { get; set; }			//Список авторов
+		[DataMember]
 		public Genres genres { get; set; }				//Список жанров
+		[DataMember]
 		public string title { get; set; }				//Название
+		[DataMember]
 		public string seriesTitle { get; set; }			//Название серии
+		[DataMember]
 		public int numberInSeries { get; set; }			//Номер книги в серии
+		[DataMember]
 		public string fileName { get; set; }			//Имя файла книги; для _Lib.rus.ec имена файлов книг и их ID совпадают
+		[DataMember]
 		public int fileSize { get; set; }				//Размер файла с книгой; может не совпадать с реальным размером файла
+		[DataMember]
 		public int bookID { get; set; }					//Уникальный ID книги
+		[DataMember]
 		public bool isDeleted { get; set; }				//Признак того, что файл удален (???)
+		[DataMember]
 		public string extension { get; set; }			//Расширение файла книги
+		[DataMember]
 		public string dateAdded { get; set; }			//Дата добавления файла книги
+		[DataMember]
 		public string language { get; set; }			//Язык книги
+		[DataMember]
 		public string bookRate { get; set; }			//Внешний рейтинг книги (???)
+		[DataMember]
 		public string keywords { get; set; }			//Теги
 
 		public string archiveName { get; set; }			//Имя архива с файлом книги 

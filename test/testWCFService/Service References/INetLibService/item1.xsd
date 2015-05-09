@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/BookEntity" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BookEntity" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WCFServiceLibrary/Service1/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfBookEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BookEntity" nillable="true" type="tns:BookEntity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBookEntity" nillable="true" type="tns:ArrayOfBookEntity" />
+  <xs:complexType name="BookEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="authors" nillable="true" type="tns:Authors" />
+      <xs:element minOccurs="0" name="bookID" type="xs:int" />
+      <xs:element minOccurs="0" name="bookRate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dateAdded" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="extension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fileSize" type="xs:int" />
+      <xs:element minOccurs="0" name="genres" nillable="true" type="tns:Genres" />
+      <xs:element minOccurs="0" name="isDeleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="keywords" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="language" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="numberInSeries" type="xs:int" />
+      <xs:element minOccurs="0" name="seriesTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BookEntity" nillable="true" type="tns:BookEntity" />
+  <xs:complexType name="Authors">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="authors" nillable="true" type="tns:ArrayOfAuthor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Authors" nillable="true" type="tns:Authors" />
+  <xs:complexType name="ArrayOfAuthor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Author" nillable="true" type="tns:Author" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAuthor" nillable="true" type="tns:ArrayOfAuthor" />
+  <xs:complexType name="Author">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="middleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="surname" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Author" nillable="true" type="tns:Author" />
+  <xs:complexType name="Genres">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="genresIDs" nillable="true" type="q1:ArrayOfint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Genres" nillable="true" type="tns:Genres" />
+</xs:schema>

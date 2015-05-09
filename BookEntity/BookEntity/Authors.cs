@@ -2,12 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace BookEntity
 {
+	[DataContract]
 	public class Authors : IEnumerable<Author>
 	{
+		[DataMember]
 		private readonly List<Author> authors = new List<Author>();
 
 		public Authors(string fullNames)

@@ -47,7 +47,7 @@ namespace testWCFService
 
 
 			timer.Restart();
-			var books = client.selectBooksByGenre(14);
+			var books = client.selectBooksByGenre(11);
 			timer.Stop();
 			Console.WriteLine("Genre query time:	{0}", timer.Elapsed);
 
@@ -72,7 +72,7 @@ namespace testWCFService
 			timer.Stop();
 			Console.WriteLine("Book query time:	{0}", timer.Elapsed);
 
-			Console.ReadLine();
+//			Console.ReadLine();
 		}
 	}
 }

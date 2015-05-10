@@ -175,8 +175,7 @@ namespace BookEntity
 
 		public void printInfoDebug()
 		{
-			Console.WriteLine("{0}	{1}	{2}", authors.getAuthors(), title, bookID);
-//			Console.WriteLine("{0}({1}) in {2}", fileName, bookID, archiveName);
+			Console.WriteLine("{0} {1} - {2}", bookID, authors.getAuthors(), title);
 		}
 
 	}

@@ -9,25 +9,31 @@ namespace WCFServiceLibrary
 	{
 		public List<BookEntity.BookEntity> selectBooksByAuthor(string authorNameToSearch)
 		{
-			Console.WriteLine("Author query received:	{0}", authorNameToSearch);
-			return MetadataDB.MetadataDB.selectBooksByAuthor(authorNameToSearch);
+			Console.Write("Author query:	{0}. ", authorNameToSearch);
+			var booksList = MetadataDB.MetadataDB.selectBooksByAuthor(authorNameToSearch);
+			Console.WriteLine("Found {0} entities.", booksList.Count);
+			return booksList;
 		}
 
 		public List<BookEntity.BookEntity> selectBooksByTitle(string titleToSearch)
 		{
-			Console.WriteLine("Title query received:	{0}", titleToSearch);
-			return MetadataDB.MetadataDB.selectBooksByTitle(titleToSearch);
+			Console.Write("Title query:	{0}. ", titleToSearch);
+			var books = MetadataDB.MetadataDB.selectBooksByTitle(titleToSearch);
+			Console.WriteLine("Found {0} entities.", books.Count);
+			return books;
 		}
 
 		public List<BookEntity.BookEntity> selectBooksByGenre(int genreIDToSearch)
 		{
-			Console.WriteLine("Genre query received:	{0}	{1}", GenresList.GenresList.getGenreName(genreIDToSearch), GenresList.GenresList.getGenreDescription(genreIDToSearch));
-			return MetadataDB.MetadataDB.selectBooksByGenre(genreIDToSearch);
+			Console.Write("Genre query:	{0} - {1}. ", GenresList.GenresList.getGenreName(genreIDToSearch), GenresList.GenresList.getGenreDescription(genreIDToSearch));
+			var books = MetadataDB.MetadataDB.selectBooksByGenre(genreIDToSearch);
+			Console.WriteLine("Found {0} entities.", books.Count);
+			return books;
 		}
 
 		public BookEntity.BookEntity selectBookByID(int bookID)
 		{
-			Console.Write("Book ID query received:	");
+			Console.Write("Book ID query:	");
 			var book = MetadataDB.MetadataDB.selectBookByID(bookID);
 			book.printInfoDebug();
 			return book;
@@ -35,7 +41,7 @@ namespace WCFServiceLibrary
 
 		public Stream extractBook(BookEntity.BookEntity book)
 		{
-			Console.Write("Book query received:	");
+			Console.Write("Book query:	");
 			book.printInfoDebug();
 			return BookExtractor.BookExtractor.extract(book);
 		}

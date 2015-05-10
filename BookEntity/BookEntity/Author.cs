@@ -3,16 +3,21 @@ using System.Runtime.Serialization;
 
 namespace BookEntity
 {
-	enum Name
-	{
-		LastName,
-		FirstName,
-		MiddleName
-	};
 
 	[DataContract]
 	public class Author
 	{
+		[DataContract]
+		enum Name
+		{
+			[EnumMember]
+			LastName,
+			[EnumMember]
+			FirstName,
+			[EnumMember]
+			MiddleName
+		};
+
 		[DataMember]
 		public string surname { get; private set; }		//фамилия
 		[DataMember]

@@ -20,7 +20,10 @@ namespace GenresList
 				readGenresFromFile(genresFilePath);
 			}
 			catch (Exception e)
-			{ }
+			{
+//				Console.WriteLine("Failed to fetch genres list.");
+				throw;
+			}
 		}
 
 		private static void readGenresFromFile(string genresFilePath)

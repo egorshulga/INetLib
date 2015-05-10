@@ -39,6 +39,7 @@ namespace BookEntity
 		[DataMember]
 		public string keywords { get; set; }			//Теги
 
+		[DataMember]
 		public string archiveName { get; set; }			//Имя архива с файлом книги 
 														//Поле инициализируется в момент чтения метаданных
 														//(Имя архива совпадает с именем файла с метаданными в inpx файле)

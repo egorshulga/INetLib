@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.IO.Compression;
 
 namespace BookExtractor
@@ -19,7 +20,17 @@ namespace BookExtractor
 	    {
 		    string archivePath = getArchivePath(book.archiveName);
 
-		    ZipArchive archive = ZipFile.OpenRead(archivePath);
+		    ZipArchive archive;
+		    try
+		    {
+				archive = ZipFile.OpenRead(archivePath);
+		    }
+		    catch (IOException e)
+		    {
+				Console.WriteLine("Failed to extract book file.");
+//			    Console.WriteLine(e.Message);
+			    return Stream.Null;
+		    }
 
 		    var bookEntry = archive.GetEntry(book.fileName.appendExtension(book.extension));
 

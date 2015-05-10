@@ -20,6 +20,8 @@ namespace INetLibServiceHost
 
 			tryBooksStorageInitialization();
 
+			saveConfigurationPathsToConfigFile();
+
 			Console.WriteLine("Initializations finished. Starting service...");
 		}
 
@@ -34,9 +36,8 @@ namespace INetLibServiceHost
 			else
 			{
 				getConfigurationPathsFromUserInput();
-
-				saveConfigurationPathsToConfigFile();
 			}
+			saveConfigurationPathsToConfigFile();
 		}
 
 		private static void tryGetConfigurationPathsFromFile()
@@ -47,7 +48,7 @@ namespace INetLibServiceHost
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine(e.Message);
+//				Console.WriteLine(e.Message);
 				getConfigurationPathsFromUserInput();
 			}
 		}
@@ -58,6 +59,7 @@ namespace INetLibServiceHost
 			genresListPath = configReader.ReadLine();
 			metadataPath = configReader.ReadLine();
 			booksFolderPath = configReader.ReadLine();
+			configReader.Close();
 		}
 
 		private static void saveConfigurationPathsToConfigFile()
@@ -66,6 +68,7 @@ namespace INetLibServiceHost
 			configWriter.WriteLine(genresListPath);
 			configWriter.WriteLine(metadataPath);
 			configWriter.WriteLine(booksFolderPath);
+			configWriter.Close();
 		}
 
 		private static void getConfigurationPathsFromUserInput()
@@ -108,8 +111,8 @@ namespace INetLibServiceHost
 				catch (Exception e)
 				{
 					successfulInitialization = false;
-					Console.Write("Failed to fetch genres: ");
-					Console.WriteLine(e.Message);
+					Console.WriteLine("Failed to fetch genre. ");
+//					Console.WriteLine(e.Message);
 					getGenresListPathFromUserInput();
 				}
 			}
@@ -117,7 +120,7 @@ namespace INetLibServiceHost
 
 		private static void genresInitialization()
 		{
-			GenresList.GenresList.initialize(@"D:\books\_Lib.rus.ec - Официальная\genres_fb2.glst");
+			GenresList.GenresList.initialize(genresListPath);
 			Console.WriteLine("Genres fetched.");
 		}
 
@@ -134,8 +137,8 @@ namespace INetLibServiceHost
 				catch (Exception e)
 				{
 					successfulInitialization = false;
-					Console.Write("Failed to fetch metadata: ");
-					Console.WriteLine(e.Message);
+					Console.WriteLine("Failed to fetch metadata. ");
+//					Console.WriteLine(e.Message);
 					getMetadataPathFromUserInput();
 				}
 			}
@@ -143,7 +146,7 @@ namespace INetLibServiceHost
 
 		private static void metadataDBInitialization()
 		{
-			MetadataDB.MetadataDB.initialize(@"D:\books\_Lib.rus.ec - Официальная\librusec_local_fb2.inpx");
+			MetadataDB.MetadataDB.initialize(metadataPath);
 			Console.WriteLine("Metadata fetched.");
 		}
 
@@ -160,8 +163,8 @@ namespace INetLibServiceHost
 				catch (Exception e)
 				{
 					successfulInitialization = false;
-					Console.Write("Failed to fetch metadata: ");
-					Console.WriteLine(e.Message);
+					Console.WriteLine("Failed to fetch metadata. ");
+//					Console.WriteLine(e.Message);
 					getMetadataPathFromUserInput();
 				}
 			}
@@ -169,8 +172,8 @@ namespace INetLibServiceHost
 
 		private static void booksStorageInitialization()
 		{
-			BookExtractor.BookExtractor.initialize(@"D:\books\_Lib.rus.ec - Официальная\lib.rus.ec");
-			Console.WriteLine("Books archives found.");
+			BookExtractor.BookExtractor.initialize(booksFolderPath);
+			Console.WriteLine("Books extractor initialized.");
 		}
 	}
 }

@@ -35,6 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BookEntity">
+      <HintPath>..\BookEntity\BookEntity\bin\Release\BookEntity.dll</HintPath>
+    </Reference>
+    <Reference Include="BookExtractor">
+      <HintPath>..\BookExtractor\bin\Release\BookExtractor.dll</HintPath>
+    </Reference>
+    <Reference Include="GenresList">
+      <HintPath>..\GenresList\GenresList\bin\Release\GenresList.dll</HintPath>
+    </Reference>
+    <Reference Include="MetadataDB">
+      <HintPath>..\MetadataDB\bin\Release\MetadataDB.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,20 +60,6 @@
     <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BookEntity\BookEntity\BookEntity.csproj">
-      <Project>{DDB4E6EF-94DF-47F9-BBAF-A00D20FCC56E}</Project>
-      <Name>BookEntity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BookExtractor\BookExtractor.csproj">
-      <Project>{9FB38250-4B54-4C5E-8A25-3750579C904B}</Project>
-      <Name>BookExtractor</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MetadataDB\MetadataDB.csproj">
-      <Project>{5BAC6D67-7FC9-4E3D-95E5-F2B8CE2137F7}</Project>
-      <Name>MetadataDB</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

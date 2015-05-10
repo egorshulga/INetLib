@@ -20,6 +20,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testImportInpxAndGenresList", "test\testImportInpxAndGenresList\testImportInpxAndGenresList.csproj", "{C86527DE-3A50-4745-A6D8-460A6F6784C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFServiceLibrary", "WCFServiceLibrary\WCFServiceLibrary.csproj", "{1B37298A-6CF1-429E-AECB-17FB091129E5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DDB4E6EF-94DF-47F9-BBAF-A00D20FCC56E} = {DDB4E6EF-94DF-47F9-BBAF-A00D20FCC56E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INetLibServiceHost", "INetLibServiceHost\INetLibServiceHost.csproj", "{9476CA0A-27EC-4A8D-BB46-36C9E09B312E}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -27,6 +30,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INetLibServiceHost", "INetL
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testWCFService", "test\testWCFService\testWCFService.csproj", "{68BDACBA-0920-4ADA-B262-AD92399AACEF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DDB4E6EF-94DF-47F9-BBAF-A00D20FCC56E} = {DDB4E6EF-94DF-47F9-BBAF-A00D20FCC56E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

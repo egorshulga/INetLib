@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Discovery;
+using System.Text;
 using WCFServiceLibrary;
 
 namespace testWCFService
@@ -12,9 +14,12 @@ namespace testWCFService
 	{
 		static void Main(string[] args)
 		{
-			var client = new DiscoveryClient(new UdpDiscoveryEndpoint());
+			Stopwatch timer = new Stopwatch();
+
+			timer.Start();
+			var discoveryClient = new DiscoveryClient(new UdpDiscoveryEndpoint());
 			var criteria = new FindCriteria(typeof (IService)) {MaxResults = 1};
-			var foundServices = client.Find(criteria);
+			var foundServices = discoveryClient.Find(criteria);
 
 			foreach (var service in foundServices.Endpoints)
 			{
@@ -28,20 +33,46 @@ namespace testWCFService
 					Mode = SecurityMode.None,
 					Transport = {ClientCredentialType = TcpClientCredentialType.None},
 					Message = {ClientCredentialType = MessageCredentialType.None}
-				}
+				},
+				MaxReceivedMessageSize = int.MaxValue
 			};
-//			var endPoint = new EndpointAddress("net.tcp://172.19.12.228:14141/INetLib");
-			var address = foundServices.Endpoints.First(ep => ep.Address.Uri.Scheme == "net.tcp").Address;
+			var address = foundServices.Endpoints.First(ep => ep.Address.Uri.Scheme == "net.tcp").Address.Uri.AbsoluteUri;
 			var channelFactory = new ChannelFactory<IService>(binding, address);
 
-			IService factory = channelFactory.CreateChannel();
+			IService client = channelFactory.CreateChannel();
+			timer.Stop();
+			Console.WriteLine("Server search time:	{0}", timer.Elapsed);
 
-			List<BookEntity.BookEntity> books = factory.selectBooksByTitle("поттер");
-			books = factory.selectBooksByAuthor("линдгрен");
-			var book = factory.selectBookByID(books[0].bookID);
-			books = factory.selectBooksByGenre(14);
-			TextReader stream = new StreamReader(factory.extractBook(books[0]));
+
+
+
+			timer.Restart();
+			var books = client.selectBooksByGenre(14);
+			timer.Stop();
+			Console.WriteLine("Genre query time:	{0}", timer.Elapsed);
+
+			timer.Restart();
+			books = client.selectBooksByAuthor("линдгрен");
+			timer.Stop();
+			Console.WriteLine("Author query time:	{0}", timer.Elapsed);
+
+			timer.Restart();
+			books = client.selectBooksByTitle("potter");
+			timer.Stop();
+			Console.WriteLine("Title query time:	{0}", timer.Elapsed);
+
+			timer.Restart();
+			var book = client.selectBookByID(books[0].bookID);
+			timer.Stop();
+			Console.WriteLine("ID query time:		{0}", timer.Elapsed);
+
+			timer.Restart();
+			TextReader stream = new StreamReader(client.extractBook(books[0]));
 //			Console.WriteLine(stream.ReadToEnd());
+			timer.Stop();
+			Console.WriteLine("Book query time:	{0}", timer.Elapsed);
+
+			Console.ReadLine();
 		}
 	}
 }

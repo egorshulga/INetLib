@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.ServiceModel;
 using WCFServiceLibrary;
 
@@ -40,11 +41,28 @@ namespace INetLibServiceHost
 		private static void startService()
 		{
 			ServiceHost host = new ServiceHost(typeof (Service));
+
+			host.addINetLibServiceEndpoint();
+
 			host.Open();
 			Console.WriteLine("INetLib host service started at " + DateTime.Now);
 			Console.WriteLine("Press any key to stop the host service.");
 			Console.ReadKey();
 			host.Close();
+		}
+
+		private static void addINetLibServiceEndpoint(this ServiceHost host)
+		{
+			string hostURI = "net.tcp://" + Dns.GetHostName() + ":14141/INetLib";
+			host.AddServiceEndpoint(typeof (IService), new NetTcpBinding
+			{
+				Security =
+				{
+					Mode = SecurityMode.None,
+					Transport = {ClientCredentialType = TcpClientCredentialType.None},
+					Message = {ClientCredentialType = MessageCredentialType.None}
+				}
+			}, hostURI);
 		}
 	}
 }

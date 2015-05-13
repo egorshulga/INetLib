@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.ServiceModel;
 using WCFServiceLibrary;
@@ -45,7 +46,9 @@ namespace INetLibServiceHost
 			host.addINetLibServiceEndpoint();
 
 			host.Open();
-			Console.WriteLine("INetLib host service started at " + DateTime.Now);
+			Console.WriteLine("INetLib host service started at " +
+			                  host.Description.Endpoints.First(ep => ep.Address.Uri.Scheme == "net.tcp").ListenUri.AbsoluteUri +
+			                  " on " + DateTime.Now);
 			Console.WriteLine("Press any key to stop the host service.");
 			Console.ReadKey();
 			host.Close();

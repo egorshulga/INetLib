@@ -46,6 +46,10 @@ namespace BookEntity
 			return GetEnumerator();
 		}
 
+		public override string ToString()
+		{
+			return getAllAuthorsString();
+		}
 
 		public string getAuthors()
 		{

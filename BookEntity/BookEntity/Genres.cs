@@ -52,13 +52,14 @@ namespace BookEntity
 
 		public string getGenres()
 		{
-			StringBuilder authorsStringBuilder = new StringBuilder();
-			foreach (var genreID in genresIDs)
+			StringBuilder genresStringBuilder = new StringBuilder();
+			for (int i = 0; i < genresIDs.Count - 1; i++)
 			{
-				authorsStringBuilder.Append(GenresList.GenresList.getGenreDescription(genreID));
-				authorsStringBuilder.Append(", ");
+				genresStringBuilder.Append(GenresList.GenresList.getGenreDescription(genresIDs[i]));
+				genresStringBuilder.Append(", ");
 			}
-			return authorsStringBuilder.ToString();
+			genresStringBuilder.Append(GenresList.GenresList.getGenreDescription(genresIDs[genresIDs.Count - 1]));
+			return genresStringBuilder.ToString();
 		}
 
 
@@ -79,6 +80,12 @@ namespace BookEntity
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return GetEnumerator();
+		}
+
+
+		public override string ToString()
+		{
+			return getGenres();
 		}
 	}
 }

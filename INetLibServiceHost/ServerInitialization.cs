@@ -22,7 +22,7 @@ namespace INetLibServiceHost
 
 			saveConfigurationPathsToConfigFile();
 
-			Console.WriteLine("Initializations finished. Starting service...");
+			Console.WriteLine("Initialization finished. Starting service...");
 		}
 
 

@@ -10,7 +10,7 @@ namespace MetadataDB
 	    public static void initialize(string inpxFilePath)
 	    {
 		    metadataDB = InpxImport.InpxImport.import(inpxFilePath);
-//		    sortByAuthorAscending();			
+		    sortByAuthorAscending();			
 	    }
 	    private static void sortByAuthorAscending()
 	    {

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Discovery;
-using System.Text;
 using WCFServiceLibrary;
 
 namespace testWCFService
@@ -52,7 +50,7 @@ namespace testWCFService
 			Console.WriteLine("Genre query time:	{0}", timer.Elapsed);
 
 			timer.Restart();
-			books = client.selectBooksByAuthor("линдгрен");
+			books = client.selectBooksByAuthor("норман");
 			timer.Stop();
 			Console.WriteLine("Author query time:	{0}", timer.Elapsed);
 

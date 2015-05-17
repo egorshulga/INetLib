@@ -61,7 +61,14 @@ namespace GenresList
 
 		static public string getGenreDescription(int id)
 		{
-			return genres[id].description;
+			try
+			{
+				return id < 0 ? "undefined" : genres[id].description;
+			}
+			catch
+			{
+				return "";
+			}
 		}
 
 		public const int notFoundID = -1;

@@ -1,0 +1,11 @@
+﻿<Window x:Class="INetLibClient.DownloadFolderPathInput"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DownloadFolderPathInput" Height="125" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Closed="Window_Closed">
+    <Grid>
+        <Label Content="Download folder" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="downloadFolderBox" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="244"/>
+        <Button x:Name="downloadFolderButton" Content="..." HorizontalAlignment="Right" Margin="0,0,7,0" VerticalAlignment="Center" Width="24" Height="24" Click="downloadFolderButton_Click"/>
+        <Button x:Name="OKButton" Content="OK" HorizontalAlignment="Center" Margin="0,0,0,5" VerticalAlignment="Bottom" Width="75" IsDefault="True" Click="OKButton_Click"/>
+    </Grid>
+</Window>

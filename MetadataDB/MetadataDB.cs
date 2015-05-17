@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BookEntity;
 
 namespace MetadataDB
 {
@@ -10,7 +11,7 @@ namespace MetadataDB
 	    public static void initialize(string inpxFilePath)
 	    {
 		    metadataDB = InpxImport.InpxImport.import(inpxFilePath);
-		    sortByAuthorAscending();			
+//		    sortByAuthorAscending();			
 	    }
 	    private static void sortByAuthorAscending()
 	    {
@@ -32,10 +33,20 @@ namespace MetadataDB
 		{
 			return metadataDB.selectBooksByGenre(genreIDToSearch);
 		}
+	    public static List<BookEntity.BookEntity> selectBooksByGenres(Genres genres)
+	    {
+		    return metadataDB.selectBooksByGenres(genres);
+	    }
 		public static BookEntity.BookEntity selectBookByID(int bookID)
 		{
 			return metadataDB.selectBookByID(bookID);
 		}
+	    public static List<BookEntity.BookEntity> selectBooksByTemplate(BookEntity.BookEntity template)
+	    {
+		    return metadataDB.selectBooksByTemplate(template);
+	    }
+
+
 
 
     }

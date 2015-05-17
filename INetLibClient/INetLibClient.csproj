@@ -36,6 +36,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Discovery" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -53,13 +56,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DownloadFolderEntering.xaml.cs">
-      <DependentUpon>DownloadFolderEntering.xaml</DependentUpon>
+    <Compile Include="DownloadFolderPathInput.xaml.cs">
+      <DependentUpon>DownloadFolderPathInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerSearch.xaml.cs">
       <DependentUpon>ServerSearch.xaml</DependentUpon>
     </Compile>
-    <Page Include="DownloadFolderEntering.xaml">
+    <Page Include="DownloadFolderPathInput.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,6 +122,10 @@
     <ProjectReference Include="..\InpxImport\InpxImport\InpxImport.csproj">
       <Project>{115CCF7D-60A9-4BBC-A33D-7A8962FFC994}</Project>
       <Name>InpxImport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCFServiceLibrary\WCFServiceLibrary.csproj">
+      <Project>{1B37298A-6CF1-429E-AECB-17FB091129E5}</Project>
+      <Name>WCFServiceLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

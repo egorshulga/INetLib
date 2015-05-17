@@ -14,12 +14,11 @@ namespace INetLibClient
 		{
 			InitializeComponent();
 
-			GenresList.GenresList.initialize(@"D:\books\_Lib.rus.ec - Официальная\genres_fb2.glst");
+			ServerSearch serverSearchWindow = new ServerSearch();
+			serverSearchWindow.ShowDialog();
 
-			List<BookEntity.BookEntity> books =
-				InpxImport.InpxImport.import(@"D:\books\_Lib.rus.ec - Официальная\librusec_local_fb2.inpx");
-
-			booksListBox.ItemsSource = books;
+			DownloadFolderPathInput downloadFolderPathInput = new DownloadFolderPathInput();
+			downloadFolderPathInput.ShowDialog();
 		}
 
 		private void cancelButton_Click(object sender, RoutedEventArgs e)
@@ -42,7 +41,7 @@ namespace INetLibClient
 			genresLabel.Content = selectedBook.genres.getGenres();
 			seriesLabel.Content = selectedBook.seriesTitle + '[' + selectedBook.numberInSeries + ']';
 			languageLabel.Content = selectedBook.language;
-			keywordsLabel.Content = selectedBook.keywords;
+			dateLabel.Content = selectedBook.dateAdded;
 			sizeLabel.Content = selectedBook.fileSize.ToString();
 		}
 	}

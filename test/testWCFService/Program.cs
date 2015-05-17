@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Discovery;
+using BookEntity;
 using WCFServiceLibrary;
 
 namespace testWCFService
@@ -50,6 +52,11 @@ namespace testWCFService
 			Console.WriteLine("Genre query time:	{0}", timer.Elapsed);
 
 			timer.Restart();
+			books = client.selectBooksByGenres(new Genres{genresIDs = new List<int>{15, 22}});
+			timer.Stop();
+			Console.WriteLine("Genres query time:	{0}", timer.Elapsed);
+
+			timer.Restart();
 			books = client.selectBooksByAuthor("норман");
 			timer.Stop();
 			Console.WriteLine("Author query time:	{0}", timer.Elapsed);
@@ -63,6 +70,15 @@ namespace testWCFService
 			var book = client.selectBookByID(books[0].bookID);
 			timer.Stop();
 			Console.WriteLine("ID query time:		{0}", timer.Elapsed);
+
+			timer.Restart();
+			book = new BookEntity.BookEntity();
+			book.authors = new Authors(new Author{fullName = "роулинг"});
+			book.title = "поттер";
+			book.genres = new Genres{genresIDs = new List<int>{-1}};
+			books = client.selectBooksByTemplate(book);
+			timer.Stop();
+			Console.WriteLine("Template query time:	{0}", timer.Elapsed);
 
 			timer.Restart();
 			TextReader stream = new StreamReader(client.extractBook(books[0]));

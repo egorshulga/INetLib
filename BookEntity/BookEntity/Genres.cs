@@ -12,9 +12,15 @@ namespace BookEntity
 		//Genres IDs are used instead of their names.
 		//Names can be easily obtained via GenresList class (it should be initialized before)
 		[DataMember]
-		private readonly List<int> genresIDs = new List<int>();
+		public List<int> genresIDs		// = new List<int>()
+		{ get; set; }
 
-		public Genres(string genresString)
+		public Genres()
+		{
+			genresIDs = new List<int>();
+		}
+
+		public Genres(string genresString) : this()
 		{
 			parseGenresString(genresString);
 		}
@@ -49,16 +55,18 @@ namespace BookEntity
 			}
 		}
 
-
 		public string getGenres()
 		{
 			StringBuilder genresStringBuilder = new StringBuilder();
-			for (int i = 0; i < genresIDs.Count - 1; i++)
+			if (genresIDs.Count != 0)
 			{
-				genresStringBuilder.Append(GenresList.GenresList.getGenreDescription(genresIDs[i]));
-				genresStringBuilder.Append(", ");
+				for (int i = 0; i < genresIDs.Count - 1; i++)
+				{
+					genresStringBuilder.Append(GenresList.GenresList.getGenreDescription(genresIDs[i]));
+					genresStringBuilder.Append(", ");
+				}
+				genresStringBuilder.Append(GenresList.GenresList.getGenreDescription(genresIDs[genresIDs.Count - 1]));
 			}
-			genresStringBuilder.Append(GenresList.GenresList.getGenreDescription(genresIDs[genresIDs.Count - 1]));
 			return genresStringBuilder.ToString();
 		}
 

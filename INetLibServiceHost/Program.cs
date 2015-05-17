@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.ServiceModel;
+using System.ServiceModel.Description;
 using WCFServiceLibrary;
 
 namespace INetLibServiceHost
@@ -42,6 +44,8 @@ namespace INetLibServiceHost
 		private static void startService()
 		{
 			ServiceHost host = new ServiceHost(typeof (Service));
+			host.Description.Behaviors.Remove<ServiceDebugBehavior>();
+			host.Description.Behaviors.Add(new ServiceDebugBehavior{IncludeExceptionDetailInFaults = true});
 
 			host.addINetLibServiceEndpoint();
 

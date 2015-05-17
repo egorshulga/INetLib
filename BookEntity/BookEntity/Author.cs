@@ -25,8 +25,11 @@ namespace BookEntity
 		[DataMember]
 		public string middleName { get; private set; }	//отчество
 		[DataMember]
-		public string fullName { get; private set; } 
-
+		public string fullName { get; set; } 
+		
+		public Author()
+		{ }
+		
 		public Author(string fullName)
 		{
 			tryParseFullName(fullName);

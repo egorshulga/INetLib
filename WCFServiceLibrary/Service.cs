@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using BookEntity;
 
 namespace WCFServiceLibrary
 {
@@ -30,12 +31,28 @@ namespace WCFServiceLibrary
 			return books;
 		}
 
+		public List<BookEntity.BookEntity> selectBooksByGenres(Genres genres)
+		{
+			Console.Write("Genres query:	{0}. ", genres.getGenres());
+			var books = MetadataDB.MetadataDB.selectBooksByGenres(genres);
+			Console.WriteLine("Found {0} entities.", books.Count);
+			return books;
+		}
+
 		public BookEntity.BookEntity selectBookByID(int bookID)
 		{
 			Console.Write("Book ID query:	");
 			var book = MetadataDB.MetadataDB.selectBookByID(bookID);
 			book.printInfoDebug();
 			return book;
+		}
+
+		public List<BookEntity.BookEntity> selectBooksByTemplate(BookEntity.BookEntity template)
+		{
+			Console.Write("Template query:	{0} - {1} - {2}. ", template.authors[0].fullName, template.title, template.genres);
+			var books = MetadataDB.MetadataDB.selectBooksByTemplate(template);
+			Console.WriteLine("Found {0} entities.", books.Count);
+			return books;
 		}
 
 		public Stream extractBook(BookEntity.BookEntity book)

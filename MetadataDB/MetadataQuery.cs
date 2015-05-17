@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using BookEntity;
 
 namespace MetadataDB
 {
@@ -25,7 +26,15 @@ namespace MetadataDB
 		public static List<BookEntity.BookEntity> selectBooksByGenre
 													(this List<BookEntity.BookEntity> metadataList, int genreIDToSearch)
 		{
+			if (genreIDToSearch < 0)
+				return metadataList;
 			return metadataList.Where(book => book.genres.Any(genreID => genreID == genreIDToSearch)).ToList();
+		}
+
+		public static List<BookEntity.BookEntity> selectBooksByGenres
+			(this List<BookEntity.BookEntity> metadataList, Genres genres)
+		{
+			return genres.Aggregate(metadataList, (current, i) => current.selectBooksByGenre(i));
 		}
 
 		public static BookEntity.BookEntity selectBookByID(this List<BookEntity.BookEntity> metadataList, int bookID)
@@ -33,9 +42,25 @@ namespace MetadataDB
 			return metadataList.FirstOrDefault(book => book.bookID == bookID);
 		}
 
-		
-		
-		//Had to reimplement string.Contains method cause it does not work with case insensitive option
+		public static List<BookEntity.BookEntity> selectBooksByTemplate(this List<BookEntity.BookEntity> metadataList,
+			BookEntity.BookEntity template)
+		{
+			List<BookEntity.BookEntity> books = metadataList;
+
+//			if (!string.IsNullOrEmpty(template.authors.ToString()))
+				books = books.selectBooksByAuthor(template.authors[0].fullName);
+
+//			if (!string.IsNullOrEmpty(template.title))
+				books = books.selectBooksByTitle(template.title);
+
+//			if (template.genres.Count() != 0)
+				books = books.selectBooksByGenres(template.genres);
+
+			return books;
+		}
+
+
+			//Had to reimplement string.Contains method cause it does not work with case insensitive option
 		[SuppressMessage("ReSharper", "InconsistentNaming")]
 		private static bool Contains(this string source, string toCheck, StringComparison stringComparison)
 		{

@@ -45,6 +45,9 @@ namespace BookEntity
 														//(Имя архива совпадает с именем файла с метаданными в inpx файле)
 
 
+		public BookEntity()
+		{ }
+
 		public BookEntity(string bookRawInfo)
 		{
 			parseBookRawInfo(bookRawInfo);
@@ -172,10 +175,14 @@ namespace BookEntity
 			this.keywords = keywords;
 		}
 
+		public override string ToString()
+		{
+			return string.Format("{0} {1} - {2}", bookID, authors.getAuthors(), title);
+		}
 
 		public void printInfoDebug()
 		{
-			Console.WriteLine("{0} {1} - {2}", bookID, authors.getAuthors(), title);
+			Console.WriteLine(ToString());
 		}
 
 	}

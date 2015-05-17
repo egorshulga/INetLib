@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,14 @@ namespace BookEntity
 	{
 		[DataMember]
 		private readonly List<Author> authors = new List<Author>();
+
+		public Authors()
+		{ }
+
+		public Authors(Author author)
+		{
+			authors.Add(author);
+		}
 
 		public Authors(string fullNames)
 		{
@@ -68,7 +77,7 @@ namespace BookEntity
 			}
 			authorFullName = getAuthorFullNameStringBuilder(authors[authors.Count - 1]);
 			authorsStringBuilder.Append(authorFullName);
-			return authorsStringBuilder.ToString();			
+			return authorsStringBuilder.ToString();
 		}
 
 		private StringBuilder getAuthorFullNameStringBuilder(Author author)
@@ -89,6 +98,12 @@ namespace BookEntity
 			{
 				Console.WriteLine("{0} {1} {2}", author.surname, author.name, author.middleName);
 			}
+		}
+
+		public Author this[int i]
+		{
+			get { return authors[i]; }
+			set { authors[i] = value; }
 		}
 	}
 }

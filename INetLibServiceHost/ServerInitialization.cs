@@ -8,7 +8,7 @@ namespace INetLibServiceHost
 		private static string genresListPath;
 		private static string metadataPath;
 		private static string booksFolderPath;
-		private const string serverConfigurationFilePath = "server.config";
+		private const string serverConfigurationFilePath = "config.ini";
 
 		public static void initialize()
 		{

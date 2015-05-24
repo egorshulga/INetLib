@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using GenresList;
 
 namespace BookEntity
 {
@@ -18,6 +19,11 @@ namespace BookEntity
 		public Genres()
 		{
 			genresIDs = new List<int>();
+		}
+
+		public Genres(int genreID) : this()
+		{
+			genresIDs.Add(genreID);
 		}
 
 		public Genres(string genresString) : this()
@@ -70,6 +76,20 @@ namespace BookEntity
 			return genresStringBuilder.ToString();
 		}
 
+		public string getGenresFromGenresList(List<GenresListEntity> genresList)
+		{
+			StringBuilder genresStringBuilder = new StringBuilder();
+			if (genresIDs.Count != 0)
+			{
+				for (int i = 0; i < genresIDs.Count - 1; i++)
+				{
+					genresStringBuilder.Append(genresList[genresIDs[i]].description);   //.getGenreDescription(genresIDs[i]));
+					genresStringBuilder.Append(", ");
+				}
+				genresStringBuilder.Append(GenresList.GenresList.getGenreDescription(genresIDs[genresIDs.Count - 1]));
+			}
+			return genresStringBuilder.ToString();
+		}
 
 
 		public void printGenresDebug()

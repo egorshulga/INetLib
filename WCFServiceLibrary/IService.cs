@@ -2,6 +2,7 @@
 using System.IO;
 using System.ServiceModel;
 using BookEntity;
+using GenresList;
 
 namespace WCFServiceLibrary
 {
@@ -28,6 +29,9 @@ namespace WCFServiceLibrary
 
 		[OperationContract]
 		Stream extractBook(BookEntity.BookEntity book);
+
+		[OperationContract]
+		List<GenresListEntity> getAvailableGenres();
 	}
 
 

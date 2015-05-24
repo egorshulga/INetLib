@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:bookEntity="clr-namespace:BookEntity;assembly=BookEntity"
         xmlns:iNetLibClient="clr-namespace:INetLibClient"
+        xmlns:genresList="clr-namespace:GenresList;assembly=GenresList"
         Title="INetLib" Height="500" Width="60" MinHeight="400" MinWidth="600" WindowStartupLocation="CenterScreen">
     <Grid ShowGridLines="false">
         <Grid.ColumnDefinitions>
@@ -25,18 +26,21 @@
             <TextBox x:Name="titleBox" Height="23" Margin="10,75,10,0" TextWrapping="Wrap"
                      VerticalAlignment="Top" Grid.Row="1" />
             <Label Content="Genre" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" Grid.Row="1" />
-            <ComboBox x:Name="genreBox" Margin="10,124,10,0" VerticalAlignment="Top" Grid.Row="1" />
-            <Button Content="Search" HorizontalAlignment="Center" Width="74" Margin="88,160,88,0"
-                    VerticalAlignment="Top" Grid.Row="1" />
+            <ComboBox x:Name="genreBox" Margin="10,124,10,0" VerticalAlignment="Top" Grid.Row="1" KeyUp="genreBox_KeyUp">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="genresList:GenresListEntity">
+                        <Label Content="{Binding description}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button x:Name="searchButton" Content="Search" HorizontalAlignment="Center" Width="74" Margin="88,160,88,0"
+                    VerticalAlignment="Top" Grid.Row="1" Click="searchButton_Click" IsDefault="True" />
             <Menu Grid.Row="0" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="250">
                 <MenuItem Header="INetLib">
-                    <MenuItem Header="Close"/>
+                    <MenuItem x:Name="closeMenuItem" Header="Close" Click="closeMenuItem_Click"/>
                 </MenuItem>
-                <MenuItem Header="Preferences">
-                    <MenuItem Header="Server search"/>
-                    <MenuItem Header="Download folder"/>
-                </MenuItem>
-                <MenuItem Header="About"/>
+                <MenuItem Header="Preferences" Click="MenuItem_Click"/>
+<!--                <MenuItem Header="About" IsEnabled="False"/>-->
             </Menu>
         </Grid>
         <Grid Grid.Column="1">
@@ -81,7 +85,7 @@
             <Label Content="Date added:" HorizontalAlignment="Left" Margin="10,135,0,0" Grid.Row="1" VerticalAlignment="Top"/>
             <Label Content="Language:" HorizontalAlignment="Left" Margin="10,109,0,0" Grid.Row="1" VerticalAlignment="Top"/>
             <Label Content="Size:" HorizontalAlignment="Left" Margin="10,161,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <Button x:Name="downloadButton" Content="Download" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Row="1" VerticalAlignment="Bottom" Width="75"/>
+            <Button x:Name="downloadButton" Content="Download" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Row="1" VerticalAlignment="Bottom" Width="75" Click="downloadButton_Click"/>
             <Label x:Name="dateLabel" Content="" HorizontalAlignment="Left" Margin="84,135,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="SemiBold"/>
             <Label x:Name="titleLabel" Content="" HorizontalAlignment="Left" Margin="84,5,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="SemiBold"/>
             <Label x:Name="authorsLabel" Content="" HorizontalAlignment="Left" Margin="84,31,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="SemiBold"/>

@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace GenresList
 {
-	class GenresListEntity
+	[DataContract]
+	public class GenresListEntity
 	{
+		[DataMember]
 		public int genreNumber { get; private set; }
+		[DataMember]
 		public int subgenreNumber { get; private set; }
+		[DataMember]
 		public string name { get; private set; }
+		[DataMember]
 		public string description { get; private set; }
 
 		public GenresListEntity(string genreString)

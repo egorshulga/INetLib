@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
 using BookEntity;
+using GenresList;
 
 namespace WCFServiceLibrary
 {
@@ -60,6 +63,19 @@ namespace WCFServiceLibrary
 			Console.Write("Book query:	");
 			book.printInfoDebug();
 			return BookExtractor.BookExtractor.extract(book);
+		}
+
+		public List<GenresListEntity> getAvailableGenres()
+		{
+			Console.WriteLine("Request for genres from {0}", getConnectedClientAddress());
+			return GenresList.GenresList.getAvailableGenres();
+		}
+
+		private string getConnectedClientAddress()
+		{
+			MessageProperties prop = OperationContext.Current.IncomingMessageProperties;
+			RemoteEndpointMessageProperty endpoint = prop[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
+			return "[" + endpoint.Address + "]:" + endpoint.Port;
 		}
 	}
 }

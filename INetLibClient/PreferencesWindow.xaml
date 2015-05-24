@@ -1,0 +1,25 @@
+﻿<Window x:Class="INetLibClient.PreferencesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PreferencesWindow" Height="180" Width="300" ResizeMode="NoResize" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="32"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="serverPathBox" Height="23" Margin="0" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Column="1"/>
+        <Label Content="Server URL" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button x:Name="autoDiscoveryButton" Content="Auto discovery" HorizontalAlignment="Right" Margin="0,10,0,0" VerticalAlignment="Top" Width="100" Click="autoDiscoveryButton_Click" Grid.Column="1"/>
+        <Label Content="Download folder" HorizontalAlignment="Left" Margin="0,4,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
+        <TextBox x:Name="downloadFolderBox" Height="23" Margin="0" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="251" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1"/>
+        <Button x:Name="downloadFolderButton" Content="..." HorizontalAlignment="Right" Width="23" Height="23" VerticalAlignment="Bottom" Click="downloadFolderButton_Click" Grid.Column="1" Grid.Row="1"/>
+        <Button x:Name="okButton" Content="OK" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="76" Click="okButton_Click" Grid.Column="1" Grid.Row="2"/>
+
+    </Grid>
+</Window>

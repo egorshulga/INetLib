@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
 
 namespace GenresList
 {
+	[DataContract]
 	static public class GenresList
 	{
-		private static readonly List<GenresListEntity> genres = new List<GenresListEntity>();
+		[DataMember] 
+		public static List<GenresListEntity> genres = new List<GenresListEntity>();
+
+		public static void initialize(List<GenresListEntity> availableGenres)
+		{
+			genres = availableGenres;
+		}
 
 		public static void initialize(string genresFilePath)
 		{
@@ -84,6 +92,12 @@ namespace GenresList
 			{
 				Console.WriteLine("{0}.{1}	{2}:	{3}", genre.genreNumber, genre.subgenreNumber, genre.name, genre.description);
 			}
+		}
+
+
+		public static List<GenresListEntity> getAvailableGenres()
+		{
+			return genres;
 		}
 	}
 }

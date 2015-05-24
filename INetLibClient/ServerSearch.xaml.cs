@@ -21,7 +21,6 @@ namespace INetLibClient
 			set { serverPathBox.Text = value; } 
 		}
 
-		public static IService client;
 
 		private const string scheme = "net.tcp";
 		private const string serviceRelativeURL = "/INetLib";
@@ -48,6 +47,12 @@ namespace INetLibClient
 		{
 			fullServerAddress = scheme + "://" + serverHostDomainName + serviceRelativeURL;
 
+			tryEstablishConnectionToServer();
+			Close();
+		}
+
+		private void tryEstablishConnectionToServer()
+		{
 			try
 			{
 				var binding = new NetTcpBinding
@@ -55,17 +60,16 @@ namespace INetLibClient
 					Security =
 					{
 						Mode = SecurityMode.None,
-						Transport = { ClientCredentialType = TcpClientCredentialType.None },
-						Message = { ClientCredentialType = MessageCredentialType.None }
+						Transport = {ClientCredentialType = TcpClientCredentialType.None},
+						Message = {ClientCredentialType = MessageCredentialType.None}
 					},
 					MaxReceivedMessageSize = int.MaxValue
 				};
 				var channelFactory = new ChannelFactory<IService>(binding, fullServerAddress);
 
-				client = channelFactory.CreateChannel();
+//				MainWindow.client = channelFactory.CreateChannel();
 
 				isServerFound = true;
-				Close();
 			}
 			catch (Exception ex)
 			{

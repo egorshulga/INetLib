@@ -3,7 +3,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
-using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 namespace INetLibClient
 {
@@ -17,7 +16,7 @@ namespace INetLibClient
 			InitializeComponent();
 		}
 
-		public static string downloadFolder;
+		public string downloadFolder;
 
 		private void downloadFolderButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -42,6 +41,7 @@ namespace INetLibClient
 				return;
 			}
 			isDownloadFolderPathCorrect = true;
+			MainWindow.downloadFolder = downloadFolder;
 			Close();
 		}
 

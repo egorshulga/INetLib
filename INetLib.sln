@@ -41,6 +41,11 @@ Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "INetLibSetup", "INetLibSetu
 		{8A6470C4-A63E-47BF-8641-61E50225F353} = {8A6470C4-A63E-47BF-8641-61E50225F353}
 	EndProjectSection
 EndProject
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "INetLibServerSetup", "INetLibServerSetup\INetLibServerSetup.isproj", "{8CC7F36F-053F-4A7D-8D5E-1C4AE46A94CD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9476CA0A-27EC-4A8D-BB46-36C9E09B312E} = {9476CA0A-27EC-4A8D-BB46-36C9E09B312E}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -180,6 +185,16 @@ Global
 		{5065F1FD-B191-42A2-B854-E62F1BE4AC42}.Release|Any CPU.Build.0 = SingleImage
 		{5065F1FD-B191-42A2-B854-E62F1BE4AC42}.SingleImage|Any CPU.ActiveCfg = SingleImage
 		{5065F1FD-B191-42A2-B854-E62F1BE4AC42}.SingleImage|Any CPU.Build.0 = SingleImage
+		{8CC7F36F-053F-4A7D-8D5E-1C4AE46A94CD}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
+		{8CC7F36F-053F-4A7D-8D5E-1C4AE46A94CD}.CD_ROM|Any CPU.Build.0 = CD_ROM
+		{8CC7F36F-053F-4A7D-8D5E-1C4AE46A94CD}.Debug|Any CPU.ActiveCfg = DVD-5
+		{8CC7F36F-053F-4A7D-8D5E-1C4AE46A94CD}.Debug|Any CPU.Build.0 = DVD-5
+		{8CC7F36F-053F-4A7D-8D5E-1C4AE46A94CD}.DVD-5|Any CPU.ActiveCfg = DVD-5
+		{8CC7F36F-053F-4A7D-8D5E-1C4AE46A94CD}.DVD-5|Any CPU.Build.0 = DVD-5
+		{8CC7F36F-053F-4A7D-8D5E-1C4AE46A94CD}.Release|Any CPU.ActiveCfg = SingleImage
+		{8CC7F36F-053F-4A7D-8D5E-1C4AE46A94CD}.Release|Any CPU.Build.0 = SingleImage
+		{8CC7F36F-053F-4A7D-8D5E-1C4AE46A94CD}.SingleImage|Any CPU.ActiveCfg = SingleImage
+		{8CC7F36F-053F-4A7D-8D5E-1C4AE46A94CD}.SingleImage|Any CPU.Build.0 = SingleImage
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

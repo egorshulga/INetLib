@@ -71,7 +71,7 @@ namespace GenresList
 		{
 			try
 			{
-				return id < 0 ? "undefined" : genres[id].description;
+				return id < 0 ? "[all]" : genres[id].description;
 			}
 			catch
 			{

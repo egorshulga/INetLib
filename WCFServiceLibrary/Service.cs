@@ -52,7 +52,15 @@ namespace WCFServiceLibrary
 
 		public List<BookEntity.BookEntity> selectBooksByTemplate(BookEntity.BookEntity template)
 		{
-			Console.Write("Template query:	{0} - {1} - {2}. ", template.authors[0].fullName, template.title, template.genres);
+//			Console.Write("Template query:	{0} - {1} - {2}. ", template.authors[0].fullName, template.title, template.genres);
+			Console.Write("Template query:	");
+			Console.Write(string.IsNullOrEmpty(template.authors[0].fullName) ? "[all]" : template.authors[0].fullName);
+			Console.Write(" - ");
+			Console.Write(string.IsNullOrEmpty(template.title) ? "[all]" : template.title);
+			Console.Write(" - ");
+			Console.Write(template.genres.genresIDs.Count == 0 ? "[all]" : template.genres.ToString());
+			Console.Write(". ");
+
 			var books = MetadataDB.MetadataDB.selectBooksByTemplate(template);
 			Console.WriteLine("Found {0} entities.", books.Count);
 			return books;

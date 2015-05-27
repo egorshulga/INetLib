@@ -170,16 +170,15 @@ namespace INetLibClient
 			try
 			{
 				establishConnectionToServer();
-
 				getAvailableGenresFromServerAndInitializeGenresBox();
-
-				return Directory.Exists(downloadFolder);
 			}
 			catch
 			{
-				MessageBox.Show("Preferences are not correct");
+				MessageBox.Show("Unable connect to server. Check server address.");
 				return false;
 			}
+
+			return Directory.Exists(downloadFolder);
 		}
 
 		private void establishConnectionToServer()
@@ -199,6 +198,7 @@ namespace INetLibClient
 			client = channelFactory.CreateChannel();
 		}
 
+		static public bool isPreferencesWindowOpenedAtStartUp = true;
 		private void showPreferencesWindow()
 		{
 			showDialogPreferencesWindow();

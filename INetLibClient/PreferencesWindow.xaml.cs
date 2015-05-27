@@ -70,15 +70,21 @@ namespace INetLibClient
 			}
 		}
 
+		private bool isOKButtonPressed = false;
 		private void okButton_Click(object sender, RoutedEventArgs e)
 		{
+			MainWindow.serverFullURI = serverFullUri;
+			MainWindow.downloadFolder = downloadFolderBox.Text;
+			isOKButtonPressed = true;
 			Close();
 		}
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			MainWindow.serverFullURI = serverFullUri;
-			MainWindow.downloadFolder = downloadFolderBox.Text;
+			if (!isOKButtonPressed)
+				if (MainWindow.isPreferencesWindowOpenedAtStartUp)
+					Environment.Exit(0);
+			MainWindow.isPreferencesWindowOpenedAtStartUp = false;
 		}
 	}
 }

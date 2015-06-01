@@ -85,7 +85,7 @@ namespace INetLibClient
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.ToString());
+				MessageBox.Show(ex.Message);
 			}
 		}
 
@@ -101,7 +101,7 @@ namespace INetLibClient
 			}
 			catch (Exception exception)
 			{
-				MessageBox.Show(exception.ToString());
+				MessageBox.Show(exception.Message);
 			}
 		}
 

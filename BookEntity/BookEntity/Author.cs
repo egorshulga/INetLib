@@ -41,8 +41,9 @@ namespace BookEntity
 			string[] splittedFullName = fullName.Split(nameDelimiter);
 			try
 			{
-				this.fullName = fullName;
+//				this.fullName = fullName;
 				setNameSurnameAndMiddlename(splittedFullName);
+				this.fullName = surname + ' ' + name + ' ' + middleName;
 			}
 			catch (Exception e)
 			{ }		//Something bad happened while trying to set fields of the full name

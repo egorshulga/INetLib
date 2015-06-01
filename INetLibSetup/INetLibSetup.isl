@@ -1173,6 +1173,7 @@
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
 		<row><td>bsuir</td><td>ProgramMenuFolder</td><td>BSUIR</td><td/><td>1</td><td/></row>
 		<row><td>inetli_1_inetlibsetup</td><td>bsuir</td><td>INETLI~1|INetLibSetup</td><td/><td>1</td><td/></row>
+		<row><td>inetlib</td><td>bsuir</td><td>inetlib</td><td/><td>1</td><td/></row>
 	</table>
 
 	<table name="DrLocator">
@@ -3750,6 +3751,7 @@
 		<row><td>ID_STRING4</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>-761008781</td></row>
 		<row><td>ID_STRING5</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>-761047213</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>INetLib</td><td>0</td><td/><td>-761048107</td></row>
+		<row><td>ID_STRING7</td><td>1033</td><td>INetLib</td><td>0</td><td/><td>186844938</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-761052237</td></row>
 	</table>
 
@@ -4443,6 +4445,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
+		<row><td>NewShortcut11</td><td>INetLibClient.Primary_output</td><td/><td>inetlib</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4529,6 +4532,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
 		<row><td>NewShortcut1</td><td>DesktopFolder</td><td>##ID_STRING6##</td><td>INetLibClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut11</td><td>inetlib</td><td>##ID_STRING6##</td><td>INetLibClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

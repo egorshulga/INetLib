@@ -42,7 +42,7 @@ namespace INetLibClient
 				case Format.epub:
 					return " --delete-source-file --output-format epub ";
 				case Format.mobi:
-					return " --delete-source-file --output-format epub ";
+					return " --delete-source-file --output-format mobi ";
 				case Format.azw3:
 					return " --delete-source-file --output-format azw3 ";
 				default:

@@ -111,7 +111,7 @@ namespace INetLibServiceHost
 				catch (Exception e)
 				{
 					successfulInitialization = false;
-					Console.WriteLine("Failed to fetch genre. ");
+					Console.WriteLine("Failed to fetch genres. ");
 //					Console.WriteLine(e.Message);
 					getGenresListPathFromUserInput();
 				}

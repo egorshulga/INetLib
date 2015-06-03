@@ -1,11 +1,12 @@
 ﻿<Window x:Class="INetLibClient.PreferencesWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="PreferencesWindow" Height="180" Width="300" ResizeMode="NoResize" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+        Title="PreferencesWindow" Height="300" Width="300" ResizeMode="NoResize" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="32"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -19,7 +20,12 @@
         <Label Content="Download folder" HorizontalAlignment="Left" Margin="0,4,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
         <TextBox x:Name="downloadFolderBox" Height="23" Margin="0" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="251" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1"/>
         <Button x:Name="downloadFolderButton" Content="..." HorizontalAlignment="Right" Width="23" Height="23" VerticalAlignment="Bottom" Click="downloadFolderButton_Click" Grid.Column="1" Grid.Row="1"/>
-        <Button x:Name="okButton" Content="OK" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="76" Click="okButton_Click" Grid.Column="1" Grid.Row="2"/>
+        <Button x:Name="okButton" Content="OK" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="76" Click="okButton_Click" Grid.Column="1" Grid.Row="3"/>
+        <Label Content="Preferred book format" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Margin="0,5,0,0"/>
+        <RadioButton x:Name="fb2Button" Content="fb2" Grid.Column="1" HorizontalAlignment="Left" Margin="10,36,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="fb2Button_Checked"/>
+        <RadioButton x:Name="epubButton" Content="epub" Grid.Column="1" HorizontalAlignment="Left" Margin="10,56,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="epubButton_Checked"/>
+        <RadioButton x:Name="mobiButton" Content="mobi" Grid.Column="1" HorizontalAlignment="Left" Margin="10,76,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="mobiButton_Checked"/>
+        <RadioButton x:Name="azw3Button" Content="azw3" Grid.Column="1" HorizontalAlignment="Left" Margin="10,96,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="azw3Button_Checked"/>
 
     </Grid>
 </Window>

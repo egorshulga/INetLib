@@ -16,7 +16,7 @@ namespace INetLibClient
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class MainWindow
 	{
 		public List<GenresListEntity> genres { get; set; }
 
@@ -122,6 +122,8 @@ namespace INetLibClient
 					MessageBox.Show(e.Message);
 				}
 			}
+
+			FormatConvertor.convert(saveFilePath, formatToUse);
 		}
 
 		private string getFileName(BookEntity.BookEntity book)
@@ -130,7 +132,13 @@ namespace INetLibClient
 		}
 		private static string cleanFileName(string fileName)
 		{
-			return Path.GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
+//			return Path.GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
+			List<char> invalidChars = new List<char>(Path.GetInvalidFileNameChars());
+			invalidChars.Add('.');
+
+			string invalidCharsRemoved = new string(fileName.Where(x => !invalidChars.Contains(x)).ToArray());
+
+			return invalidCharsRemoved;
 		}
 
 		private const string configFilePath = "config.ini";
@@ -138,6 +146,7 @@ namespace INetLibClient
 		public static string serverFullURI;
 		private IService client;
 		public static string downloadFolder;
+		public static FormatConvertor.Format formatToUse;
 
 		private void fetchServerAddressAndDownloadFolderFromConfigFile()
 		{
@@ -146,8 +155,9 @@ namespace INetLibClient
 				StreamReader reader = new StreamReader(configFilePath);
 				serverFullURI = reader.ReadLine();
 				downloadFolder = reader.ReadLine();
+				readChosenPreferredFormat(reader);
 				reader.Close();
-				File.Delete(configFilePath);
+//				File.Delete(configFilePath);
 
 				checkPreferences();
 			}
@@ -208,15 +218,35 @@ namespace INetLibClient
 
 		private void showDialogPreferencesWindow()
 		{
-			PreferencesWindow preferencesWindow = new PreferencesWindow();
+			PreferencesWindow preferencesWindow = new PreferencesWindow {fb2Button = {IsChecked = true}};
 			preferencesWindow.ShowDialog();
 		}
 		private void showDialogPreferencesWindowInitializingBoxes()
 		{
 			PreferencesWindow preferencesWindow = new PreferencesWindow();
 			setPreferencesWindowBoxes(preferencesWindow);
+			setPreferredBookFormat(preferencesWindow);
 			preferencesWindow.ShowDialog();
 			checkPreferences();
+		}
+
+		private void setPreferredBookFormat(PreferencesWindow preferencesWindow)
+		{
+			switch (formatToUse)
+			{
+				case FormatConvertor.Format.fb2:
+					preferencesWindow.fb2Button.IsChecked = true;
+					break;
+				case FormatConvertor.Format.epub:
+					preferencesWindow.epubButton.IsChecked = true;
+					break;
+				case FormatConvertor.Format.mobi:
+					preferencesWindow.mobiButton.IsChecked = true;
+					break;
+				case FormatConvertor.Format.azw3:
+					preferencesWindow.azw3Button.IsChecked = true;
+					break;
+			}
 		}
 
 		private void setPreferencesWindowBoxes(PreferencesWindow preferencesWindow)
@@ -242,11 +272,51 @@ namespace INetLibClient
 				StreamWriter writer = new StreamWriter(configFilePath);
 				writer.WriteLine(serverFullURI);
 				writer.WriteLine(downloadFolder);
+				writeChosenPreferredFormat(writer);
 				writer.Close();
 			}
 			catch
 			{
 //				MessageBox.Show("Unable to write preferences to config file");
+			}
+		}
+
+		private static void writeChosenPreferredFormat(StreamWriter writer)
+		{
+			switch (formatToUse)
+			{
+				case FormatConvertor.Format.fb2:
+					writer.WriteLine("fb2");
+					break;
+				case FormatConvertor.Format.epub:
+					writer.WriteLine("epub");
+					break;
+				case FormatConvertor.Format.mobi:
+					writer.WriteLine("mobi");
+					break;
+				case FormatConvertor.Format.azw3:
+					writer.WriteLine("azw3");
+					break;
+			}
+		}
+
+		private static void readChosenPreferredFormat(StreamReader reader)
+		{
+			string formatString = reader.ReadLine();
+			switch (formatString)
+			{
+				case "fb2":
+					formatToUse = FormatConvertor.Format.fb2;
+					break;
+				case "epub":
+					formatToUse = FormatConvertor.Format.epub;
+					break;
+				case "mobi":
+					formatToUse = FormatConvertor.Format.mobi;
+					break;
+				case "azw3":
+					formatToUse = FormatConvertor.Format.azw3;
+					break;
 			}
 		}
 	}

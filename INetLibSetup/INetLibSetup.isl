@@ -341,6 +341,9 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>INetLibClient.Primary_output</td><td>{F777502B-FC71-4558-91EE-E2FE8CCBA28D}</td><td>INSTALLDIR</td><td>2</td><td/><td>inetlibclient.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td>{93335C65-CB9F-4AA5-B017-61C0A14197E8}</td><td>CONVERTOR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>fb2conv.exe</td><td>{3B5F7CBE-0884-434B-AC3F-44003623B5FC}</td><td>CONVERTOR</td><td>2</td><td/><td>fb2conv.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>kindlegen.exe</td><td>{3E658F58-9164-4B76-8F85-9E39B09FD128}</td><td>CONVERTOR</td><td>2</td><td/><td>kindlegen.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1133,6 +1136,7 @@
 		<row><td>AdminToolsFolder</td><td>TARGETDIR</td><td>.:Admint~1|AdminTools</td><td/><td>0</td><td/></row>
 		<row><td>AppDataFolder</td><td>TARGETDIR</td><td>.:APPLIC~1|Application Data</td><td/><td>0</td><td/></row>
 		<row><td>BSUIR</td><td>ProgramFilesFolder</td><td>BSUIR</td><td/><td>0</td><td/></row>
+		<row><td>CONVERTOR</td><td>INSTALLDIR</td><td>CONVER~1|convertor</td><td/><td>0</td><td/></row>
 		<row><td>CommonAppDataFolder</td><td>TARGETDIR</td><td>.:Common~1|CommonAppData</td><td/><td>0</td><td/></row>
 		<row><td>CommonFiles64Folder</td><td>TARGETDIR</td><td>.:Common64</td><td/><td>0</td><td/></row>
 		<row><td>CommonFilesFolder</td><td>TARGETDIR</td><td>.:Common</td><td/><td>0</td><td/></row>
@@ -1866,6 +1870,9 @@
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>AlwaysInstall</td><td>INetLibClient.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>AlwaysInstall</td><td>fb2conv.exe</td></row>
+		<row><td>AlwaysInstall</td><td>kindlegen.exe</td></row>
 	</table>
 
 	<table name="File">
@@ -1880,7 +1887,10 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
+		<row><td>fb2conv.exe</td><td>fb2conv.exe</td><td>fb2conv.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\for-study\coursework\convertor\fb2conv.exe</td><td>1</td><td/></row>
+		<row><td>fb2conv_manual.pdf</td><td>ISX_DEFAULTCOMPONENT</td><td>FB2CON~1.PDF|fb2conv manual.pdf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\for-study\coursework\convertor\fb2conv manual.pdf</td><td>1</td><td/></row>
 		<row><td>inetlibclient.primary_output</td><td>INetLibClient.Primary_output</td><td>INetLibClient.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;INetLibClient&gt;|Built</td><td>3</td><td/></row>
+		<row><td>kindlegen.exe</td><td>kindlegen.exe</td><td>KINDLE~1.EXE|kindlegen.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\for-study\coursework\convertor\kindlegen.exe</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2025,6 +2035,9 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>INetLibClient.Primary_output</td><td/><td/><td>_FC3A7080_7D37_46C4_9570_9D11AD2C67FC_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_669ABAA3_C6D5_42E5_8447_63127CEAA26B_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>fb2conv.exe</td><td/><td/><td>_855CD026_21A0_43C1_BB5A_DBECBD08D961_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>kindlegen.exe</td><td/><td/><td>_F189C78C_8075_4EEE_A533_47ED8378CB93_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -3457,6 +3470,8 @@
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>-761029261</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>-761008781</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td>INetLib</td><td>0</td><td/><td>-761009964</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>1033</td><td>LAUNCH~1.EXE|Launch fb2conv.exe</td><td>0</td><td/><td>455303317</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME5</td><td>1033</td><td>LAUNCH~1.EXE|Launch kindlegen.exe</td><td>0</td><td/><td>455303317</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>-761052237</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>-761052237</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>-761052237</td></row>
@@ -3860,6 +3875,8 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
+		<row><td>fb2conv.exe_01E1CF6ED6AD420CAE0D75EE8F21EE4E.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
+		<row><td>kindlegen.exe_8C7B5428DCB24CF4845EE862D42D6F8F.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4446,6 +4463,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
 		<row><td>NewShortcut11</td><td>INetLibClient.Primary_output</td><td/><td>inetlib</td><td>2</td></row>
+		<row><td>fb2conv.exe</td><td>fb2conv.exe</td><td/><td>inetlib</td><td>2</td></row>
+		<row><td>kindlegen.exe</td><td>kindlegen.exe</td><td/><td>inetlib</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4533,6 +4552,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="I4">ISAttributes</col>
 		<row><td>NewShortcut1</td><td>DesktopFolder</td><td>##ID_STRING6##</td><td>INetLibClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut11</td><td>inetlib</td><td>##ID_STRING6##</td><td>INetLibClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>fb2conv.exe</td><td>inetlib</td><td>##IDS_SHORTCUT_DISPLAY_NAME4##</td><td>fb2conv.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>fb2conv.exe_01E1CF6ED6AD420CAE0D75EE8F21EE4E.exe</td><td>0</td><td>1</td><td>CONVERTOR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>kindlegen.exe</td><td>inetlib</td><td>##IDS_SHORTCUT_DISPLAY_NAME5##</td><td>kindlegen.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>kindlegen.exe_8C7B5428DCB24CF4845EE862D42D6F8F.exe</td><td>0</td><td>1</td><td>CONVERTOR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

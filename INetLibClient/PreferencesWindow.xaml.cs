@@ -75,6 +75,7 @@ namespace INetLibClient
 		{
 			MainWindow.serverFullURI = serverFullUri;
 			MainWindow.downloadFolder = downloadFolderBox.Text;
+			MainWindow.formatToUse = format;
 			isOKButtonPressed = true;
 			Close();
 		}
@@ -85,6 +86,27 @@ namespace INetLibClient
 				if (MainWindow.isPreferencesWindowOpenedAtStartUp)
 					Environment.Exit(0);
 			MainWindow.isPreferencesWindowOpenedAtStartUp = false;
+		}
+
+		private FormatConvertor.Format format = FormatConvertor.Format.fb2;
+		private void fb2Button_Checked(object sender, RoutedEventArgs e)
+		{
+			format = FormatConvertor.Format.fb2;
+		}
+
+		private void epubButton_Checked(object sender, RoutedEventArgs e)
+		{
+			format = FormatConvertor.Format.epub;
+		}
+
+		private void mobiButton_Checked(object sender, RoutedEventArgs e)
+		{
+			format = FormatConvertor.Format.mobi;
+		}
+
+		private void azw3Button_Checked(object sender, RoutedEventArgs e)
+		{
+			format = FormatConvertor.Format.azw3;
 		}
 	}
 }

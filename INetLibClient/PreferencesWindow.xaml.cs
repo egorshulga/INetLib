@@ -20,7 +20,7 @@ namespace INetLibClient
 
 		
 		private const string scheme = "net.tcp";
-		private const string serviceRelativeURL = "/INetLib";
+		private const string serviceRelativeURL = ":14141/INetLib";
 		public void setServerHostUri(string serverFullURI)
 		{
 			serverFullUri = serverFullURI;
@@ -43,7 +43,7 @@ namespace INetLibClient
 			set
 			{
 				Uri serverUri = new Uri(value);
-				serverPathBox.Text = serverUri.Host + ":" + serverUri.Port;
+				serverPathBox.Text = serverUri.Host;// + ":" + serverUri.Port;
 			}
 		}
 		private void autoDiscoveryButton_Click(object sender, RoutedEventArgs e)

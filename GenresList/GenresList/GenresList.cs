@@ -14,24 +14,18 @@ namespace GenresList
 		public static void initialize(List<GenresListEntity> availableGenres)
 		{
 			genres = availableGenres;
+			genres.Sort((x, y) => String.CompareOrdinal(x.description, y.description));
 		}
 
 		public static void initialize(string genresFilePath)
 		{
 			tryReadGenresFromFile(genresFilePath);
+			genres.Sort((x, y) => String.CompareOrdinal(x.description, y.description));
 		}
 
 		private static void tryReadGenresFromFile(string genresFilePath)
 		{
-			try
-			{
-				readGenresFromFile(genresFilePath);
-			}
-			catch (Exception e)
-			{
-//				Console.WriteLine("Failed to fetch genres list.");
-				throw;
-			}
+			readGenresFromFile(genresFilePath);
 		}
 
 		private static void readGenresFromFile(string genresFilePath)

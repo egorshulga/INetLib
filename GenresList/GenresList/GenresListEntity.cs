@@ -8,6 +8,8 @@ namespace GenresList
 	public class GenresListEntity
 	{
 		[DataMember]
+		public int genreGroupNumber { get; private set; }
+		[DataMember]
 		public int genreNumber { get; private set; }
 		[DataMember]
 		public int subgenreNumber { get; private set; }
@@ -28,7 +30,7 @@ namespace GenresList
 
 		private const char numberAndNameDelimiter = ' ';
 		private const int genreAndSubgenrePosition = 0;		//формат строки жанра:
-		private const int nameAndDescriptionPosition = 1;	//0.<genreNumber>.<subgenreNumber> <name>;<description>
+		private const int nameAndDescriptionPosition = 1;	//<genreGroupNumber>.<genreNumber>.<subgenreNumber> <name>;<description>
 		//разделим сначала по пробелу
 		//потом куски будем делить по точке и по точке с запятой
 		private void splitAndSetFields(string genreString)
@@ -42,11 +44,13 @@ namespace GenresList
 		}
 
 		private const char genreAndSubgenreDelimiter = '.';
+		private const int genreGroupPosition = 0;
 		private const int genrePosition = 1;
 		private const int subgenrePosition = 2;
 		private void setGenreAndSubgenreNumber(string genreAndSubgenre)
 		{
 			string[] genreAndSubgenreSplitted = genreAndSubgenre.Split(genreAndSubgenreDelimiter);
+			genreGroupNumber = Convert.ToInt32(genreAndSubgenreSplitted[genreGroupPosition]);
 			genreNumber = Convert.ToInt32(genreAndSubgenreSplitted[genrePosition]);
 			subgenreNumber = Convert.ToInt32(genreAndSubgenreSplitted[subgenrePosition]);
 		}

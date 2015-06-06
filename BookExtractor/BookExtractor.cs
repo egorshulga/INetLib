@@ -25,7 +25,7 @@ namespace BookExtractor
 		    {
 				archive = ZipFile.OpenRead(archivePath);
 		    }
-		    catch (IOException)
+		    catch (Exception)
 		    {
 				Console.WriteLine("Failed to extract book file.");
 			    return Stream.Null;

@@ -162,7 +162,7 @@ namespace INetLibServiceHost
 
 		private static void metadataDBInitialization()
 		{
-			MetadataDB.MetadataDB.initialize(metadataPath);
+			MetadataDB.MetadataList.initialize(metadataPath);
 			Console.WriteLine("Metadata fetched.");
 		}
 

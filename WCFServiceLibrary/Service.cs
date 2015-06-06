@@ -12,40 +12,40 @@ namespace WCFServiceLibrary
 	{
 		public List<BookEntity.BookEntity> selectBooksByAuthor(string authorNameToSearch)
 		{
-			var booksList = MetadataDB.MetadataDB.selectBooksByAuthor(authorNameToSearch);
+			var booksList = MetadataDB.MetadataList.selectBooksByAuthor(authorNameToSearch);
 			Console.WriteLine("Author query:	{0}. Found {1} entities.", authorNameToSearch, booksList.Count);
 			return booksList;
 		}
 
 		public List<BookEntity.BookEntity> selectBooksByTitle(string titleToSearch)
 		{
-			var books = MetadataDB.MetadataDB.selectBooksByTitle(titleToSearch);
+			var books = MetadataDB.MetadataList.selectBooksByTitle(titleToSearch);
 			Console.WriteLine("Title query:	{0}. Found {1} entities.", titleToSearch, books.Count);
 			return books;
 		}
 
 		public List<BookEntity.BookEntity> selectBooksByGenre(int genreIDToSearch)
 		{
-			var books = MetadataDB.MetadataDB.selectBooksByGenre(genreIDToSearch);
+			var books = MetadataDB.MetadataList.selectBooksByGenre(genreIDToSearch);
 			Console.WriteLine("Genre query:	{0} - {1}. Found {2} entities.", GenresList.GenresList.getGenreName(genreIDToSearch), GenresList.GenresList.getGenreDescription(genreIDToSearch), books.Count);
 			return books;
 		}
 
 		public List<BookEntity.BookEntity> selectBooksByGenres(Genres genres)
 		{
-			var books = MetadataDB.MetadataDB.selectBooksByGenres(genres);
+			var books = MetadataDB.MetadataList.selectBooksByGenres(genres);
 			Console.WriteLine("Genres query:	{0}. Found {1} entities.", genres.getGenres(), books.Count);
 			return books;
 		}
 
 		public BookEntity.BookEntity selectBookByID(int bookID)
 		{
-			return MetadataDB.MetadataDB.selectBookByID(bookID);
+			return MetadataDB.MetadataList.selectBookByID(bookID);
 		}
 
 		public List<BookEntity.BookEntity> selectBooksByTemplate(BookEntity.BookEntity template)
 		{
-			var books = MetadataDB.MetadataDB.selectBooksByTemplate(template);
+			var books = MetadataDB.MetadataList.selectBooksByTemplate(template);
 			Console.WriteLine("Template query:	{0} - {1} - {2}. Found {3} entities. ",
 				string.IsNullOrEmpty(template.authors[0].fullName) ? "[all]" : template.authors[0].fullName,
 				string.IsNullOrEmpty(template.title) ? "[all]" : template.title,

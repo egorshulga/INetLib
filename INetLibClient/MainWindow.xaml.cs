@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -112,7 +113,7 @@ namespace INetLibClient
 			{
 				try
 				{
-					var stream = client.extractBook(book);
+					var stream = client.extractBookByID(book.bookID);
 					stream.CopyTo(fileStream);
 				}
 				catch (Exception e)

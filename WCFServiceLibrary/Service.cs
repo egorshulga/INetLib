@@ -40,9 +40,7 @@ namespace WCFServiceLibrary
 
 		public BookEntity.BookEntity selectBookByID(int bookID)
 		{
-			var book = MetadataDB.MetadataDB.selectBookByID(bookID);
-			Console.Write("Book ID query:	{0}", book);
-			return book;
+			return MetadataDB.MetadataDB.selectBookByID(bookID);
 		}
 
 		public List<BookEntity.BookEntity> selectBooksByTemplate(BookEntity.BookEntity template)
@@ -60,6 +58,12 @@ namespace WCFServiceLibrary
 		{
 			Console.Write("Book query:	{0}", book);
 			return BookExtractor.BookExtractor.extract(book);
+		}
+
+		public Stream extractBookByID(int bookID)
+		{
+			var book = selectBookByID(bookID);
+			return extractBook(book);
 		}
 
 		public List<GenresListEntity> getAvailableGenres()

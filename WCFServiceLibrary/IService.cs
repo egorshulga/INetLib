@@ -31,6 +31,9 @@ namespace WCFServiceLibrary
 		Stream extractBook(BookEntity.BookEntity book);
 
 		[OperationContract]
+		Stream extractBookByID(int bookID);
+
+		[OperationContract]
 		List<GenresListEntity> getAvailableGenres();
 	}
 

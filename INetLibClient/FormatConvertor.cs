@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace INetLibClient
 {
+	[Serializable]
+	public enum Format
+	{
+		fb2, epub, mobi, azw3
+	}
+
+
 	public static class FormatConvertor
 	{
-		public enum Format
-		{
-			fb2, epub, mobi, azw3
-		}
-
 		private static string convertorPath = "convertor\\fb2conv.exe";
 
 		public static void convert(string fileToConvert, Format outputFormat)

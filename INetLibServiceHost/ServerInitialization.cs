@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using INetLibServiceHost.Properties;
 
 namespace INetLibServiceHost
 {
@@ -8,7 +9,7 @@ namespace INetLibServiceHost
 		private static string genresListPath;
 		private static string metadataPath;
 		private static string booksFolderPath;
-		private const string serverConfigurationFilePath = "config.ini";
+//		private const string serverConfigurationFilePath = "config.ini";
 
 		public static void initialize()
 		{
@@ -28,9 +29,9 @@ namespace INetLibServiceHost
 
 		private static void getInitializationPaths()
 		{
-			if (File.Exists(serverConfigurationFilePath))
+			if (!areSettingsNotSet())
 			{
-				Console.WriteLine("Config file found. Initializing...");
+				Console.WriteLine("Settings found. Initializing...");
 				tryGetConfigurationPathsFromFile();
 			}
 			else
@@ -38,6 +39,13 @@ namespace INetLibServiceHost
 				getConfigurationPathsFromUserInput();
 			}
 			saveConfigurationPathsToConfigFile();
+		}
+
+		private static bool areSettingsNotSet()
+		{
+			return string.IsNullOrEmpty(Settings.Default.genresListPath)  || 
+				   string.IsNullOrEmpty(Settings.Default.metadataPath)    ||
+			       string.IsNullOrEmpty(Settings.Default.booksFolderPath);
 		}
 
 		private static void tryGetConfigurationPathsFromFile()
@@ -55,20 +63,29 @@ namespace INetLibServiceHost
 
 		private static void getConfigurationPathsFromFile()
 		{
-			StreamReader configReader = new StreamReader(serverConfigurationFilePath);
-			genresListPath = configReader.ReadLine();
-			metadataPath = configReader.ReadLine();
-			booksFolderPath = configReader.ReadLine();
-			configReader.Close();
+//			StreamReader configReader = new StreamReader(serverConfigurationFilePath);
+//			genresListPath = configReader.ReadLine();
+//			metadataPath = configReader.ReadLine();
+//			booksFolderPath = configReader.ReadLine();
+//			configReader.Close();
+
+			genresListPath = Settings.Default.genresListPath;
+			metadataPath = Settings.Default.metadataPath;
+			booksFolderPath = Settings.Default.booksFolderPath;
 		}
 
 		private static void saveConfigurationPathsToConfigFile()
 		{
-			StreamWriter configWriter = new StreamWriter(serverConfigurationFilePath);
-			configWriter.WriteLine(genresListPath);
-			configWriter.WriteLine(metadataPath);
-			configWriter.WriteLine(booksFolderPath);
-			configWriter.Close();
+//			StreamWriter configWriter = new StreamWriter(serverConfigurationFilePath);
+//			configWriter.WriteLine(genresListPath);
+//			configWriter.WriteLine(metadataPath);
+//			configWriter.WriteLine(booksFolderPath);
+//			configWriter.Close();
+
+			Settings.Default.genresListPath = genresListPath;
+			Settings.Default.metadataPath = metadataPath;
+			Settings.Default.booksFolderPath = booksFolderPath;
+			Settings.Default.Save();
 		}
 
 		private static void getConfigurationPathsFromUserInput()
@@ -112,7 +129,6 @@ namespace INetLibServiceHost
 				{
 					successfulInitialization = false;
 					Console.WriteLine("Failed to fetch genres. ");
-//					Console.WriteLine(e.Message);
 					getGenresListPathFromUserInput();
 				}
 			}
@@ -157,6 +173,8 @@ namespace INetLibServiceHost
 			{
 				try
 				{
+					if (string.IsNullOrEmpty(Settings.Default.booksFolderPath))
+						getBooksPathFromUserInput();
 					booksStorageInitialization();
 					successfulInitialization = true;
 				}
@@ -164,7 +182,6 @@ namespace INetLibServiceHost
 				{
 					successfulInitialization = false;
 					Console.WriteLine("Failed to fetch metadata. ");
-//					Console.WriteLine(e.Message);
 					getMetadataPathFromUserInput();
 				}
 			}

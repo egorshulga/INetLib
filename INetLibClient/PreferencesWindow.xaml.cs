@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.ServiceModel.Discovery;
 using System.Windows;
@@ -70,7 +71,7 @@ namespace INetLibClient
 			}
 		}
 
-		private bool isOKButtonPressed = false;
+		private bool isOKButtonPressed;
 		private void okButton_Click(object sender, RoutedEventArgs e)
 		{
 			MainWindow.serverFullURI = serverFullUri;
@@ -80,7 +81,7 @@ namespace INetLibClient
 			Close();
 		}
 
-		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		private void Window_Closing(object sender, CancelEventArgs e)
 		{
 			if (!isOKButtonPressed)
 				if (MainWindow.isPreferencesWindowOpenedAtStartUp)
@@ -88,25 +89,25 @@ namespace INetLibClient
 			MainWindow.isPreferencesWindowOpenedAtStartUp = false;
 		}
 
-		private FormatConvertor.Format format = FormatConvertor.Format.fb2;
+		private Format format = Format.fb2;
 		private void fb2Button_Checked(object sender, RoutedEventArgs e)
 		{
-			format = FormatConvertor.Format.fb2;
+			format = Format.fb2;
 		}
 
 		private void epubButton_Checked(object sender, RoutedEventArgs e)
 		{
-			format = FormatConvertor.Format.epub;
+			format = Format.epub;
 		}
 
 		private void mobiButton_Checked(object sender, RoutedEventArgs e)
 		{
-			format = FormatConvertor.Format.mobi;
+			format = Format.mobi;
 		}
 
 		private void azw3Button_Checked(object sender, RoutedEventArgs e)
 		{
-			format = FormatConvertor.Format.azw3;
+			format = Format.azw3;
 		}
 	}
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace INetLibClient.Properties {
+namespace INetLibServiceHost.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -26,36 +26,36 @@ namespace INetLibClient.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string serverPath {
+        public string genresListPath {
             get {
-                return ((string)(this["serverPath"]));
+                return ((string)(this["genresListPath"]));
             }
             set {
-                this["serverPath"] = value;
+                this["genresListPath"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string downloadFolder {
+        public string metadataPath {
             get {
-                return ((string)(this["downloadFolder"]));
+                return ((string)(this["metadataPath"]));
             }
             set {
-                this["downloadFolder"] = value;
+                this["metadataPath"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("fb2")]
-        public global::INetLibClient.Format preferredFormat {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string booksFolderPath {
             get {
-                return ((global::INetLibClient.Format)(this["preferredFormat"]));
+                return ((string)(this["booksFolderPath"]));
             }
             set {
-                this["preferredFormat"] = value;
+                this["booksFolderPath"] = value;
             }
         }
     }

@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using BookEntity;
-using GenresList;
+using INetLibClient.Properties;
 using WCFServiceLibrary;
 
 namespace INetLibClient
@@ -18,8 +18,6 @@ namespace INetLibClient
 	/// </summary>
 	public partial class MainWindow
 	{
-		public List<GenresListEntity> genres { get; set; }
-
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -141,23 +139,27 @@ namespace INetLibClient
 			return invalidCharsRemoved;
 		}
 
-		private const string configFilePath = "config.ini";
+//		private const string configFilePath = "config.ini";
 		
 		public static string serverFullURI;
 		private IService client;
 		public static string downloadFolder;
-		public static FormatConvertor.Format formatToUse;
+		public static Format formatToUse;
 
 		private void fetchServerAddressAndDownloadFolderFromConfigFile()
 		{
 			try
 			{
-				StreamReader reader = new StreamReader(configFilePath);
-				serverFullURI = reader.ReadLine();
-				downloadFolder = reader.ReadLine();
-				readChosenPreferredFormat(reader);
-				reader.Close();
+//				StreamReader reader = new StreamReader(configFilePath);
+//				serverFullURI = reader.ReadLine();
+//				downloadFolder = reader.ReadLine();
+//				readChosenPreferredFormat(reader);
+//				reader.Close();
 //				File.Delete(configFilePath);
+
+				serverFullURI = Settings.Default.serverPath;
+				downloadFolder = Settings.Default.downloadFolder;
+				formatToUse = Settings.Default.preferredFormat;
 
 				checkPreferences();
 			}
@@ -234,16 +236,16 @@ namespace INetLibClient
 		{
 			switch (formatToUse)
 			{
-				case FormatConvertor.Format.fb2:
+				case Format.fb2:
 					preferencesWindow.fb2Button.IsChecked = true;
 					break;
-				case FormatConvertor.Format.epub:
+				case Format.epub:
 					preferencesWindow.epubButton.IsChecked = true;
 					break;
-				case FormatConvertor.Format.mobi:
+				case Format.mobi:
 					preferencesWindow.mobiButton.IsChecked = true;
 					break;
-				case FormatConvertor.Format.azw3:
+				case Format.azw3:
 					preferencesWindow.azw3Button.IsChecked = true;
 					break;
 			}
@@ -269,11 +271,16 @@ namespace INetLibClient
 		{
 			try
 			{
-				StreamWriter writer = new StreamWriter(configFilePath);
-				writer.WriteLine(serverFullURI);
-				writer.WriteLine(downloadFolder);
-				writeChosenPreferredFormat(writer);
-				writer.Close();
+//				StreamWriter writer = new StreamWriter(configFilePath);
+//				writer.WriteLine(serverFullURI);
+//				writer.WriteLine(downloadFolder);
+//				writeChosenPreferredFormat(writer);
+//				writer.Close();
+
+				Settings.Default.serverPath = serverFullURI;
+				Settings.Default.downloadFolder = downloadFolder;
+				Settings.Default.preferredFormat = formatToUse;
+				Settings.Default.Save();
 			}
 			catch
 			{
@@ -285,16 +292,16 @@ namespace INetLibClient
 		{
 			switch (formatToUse)
 			{
-				case FormatConvertor.Format.fb2:
+				case Format.fb2:
 					writer.WriteLine("fb2");
 					break;
-				case FormatConvertor.Format.epub:
+				case Format.epub:
 					writer.WriteLine("epub");
 					break;
-				case FormatConvertor.Format.mobi:
+				case Format.mobi:
 					writer.WriteLine("mobi");
 					break;
-				case FormatConvertor.Format.azw3:
+				case Format.azw3:
 					writer.WriteLine("azw3");
 					break;
 			}
@@ -306,16 +313,16 @@ namespace INetLibClient
 			switch (formatString)
 			{
 				case "fb2":
-					formatToUse = FormatConvertor.Format.fb2;
+					formatToUse = Format.fb2;
 					break;
 				case "epub":
-					formatToUse = FormatConvertor.Format.epub;
+					formatToUse = Format.epub;
 					break;
 				case "mobi":
-					formatToUse = FormatConvertor.Format.mobi;
+					formatToUse = Format.mobi;
 					break;
 				case "azw3":
-					formatToUse = FormatConvertor.Format.azw3;
+					formatToUse = Format.azw3;
 					break;
 			}
 		}

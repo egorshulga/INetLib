@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using INetLibServiceHost.Properties;
 using WCFServiceLibrary;
 
 namespace INetLibServiceHost
@@ -53,9 +53,23 @@ namespace INetLibServiceHost
 			Console.WriteLine("INetLib host service started at " +
 			                  host.Description.Endpoints.First(ep => ep.Address.Uri.Scheme == "net.tcp").ListenUri.AbsoluteUri +
 			                  " on " + DateTime.Now);
-			Console.WriteLine("Press any key to stop the host service.");
-			Console.ReadKey();
+			Console.WriteLine("Press any key to stop the host service. ");
+			Console.WriteLine("Press DELETE to exit resetting settings. ");
+			
+			var key = Console.ReadKey();
+			if (key.Key == ConsoleKey.Delete)
+			{
+				storeNullApplicationSettings();
+			}
 			host.Close();
+		}
+
+		private static void storeNullApplicationSettings()
+		{
+			Settings.Default.genresListPath = "";
+			Settings.Default.metadataPath = "";
+			Settings.Default.booksFolderPath = "";
+			Settings.Default.Save();
 		}
 
 		private static void addINetLibServiceEndpoint(this ServiceHost host)

@@ -8,6 +8,7 @@ using GenresList;
 
 namespace WCFServiceLibrary
 {
+	[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.PerSession)]
 	public class Service : IService
 	{
 		public List<BookEntity.BookEntity> selectBooksByAuthor(string authorNameToSearch)

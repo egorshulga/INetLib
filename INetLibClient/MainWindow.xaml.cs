@@ -113,7 +113,7 @@ namespace INetLibClient
 			{
 				try
 				{
-					var stream = client.extractBookByID(book.bookID);
+					var stream = client.extractBook(book);
 					stream.CopyTo(fileStream);
 				}
 				catch (Exception e)

@@ -82,9 +82,13 @@ namespace testWCFService
 
 			timer.Restart();
 			TextReader stream = new StreamReader(client.extractBook(books[0]));
-//			Console.WriteLine(stream.ReadToEnd());
 			timer.Stop();
 			Console.WriteLine("Book query time:	{0}", timer.Elapsed);
+
+			timer.Restart();
+			stream = new StreamReader(client.extractBookByID(books[0].bookID));
+			timer.Stop();
+			Console.WriteLine("Book ID query time:	{0}", timer.Elapsed);
 
 //			Console.ReadLine();
 		}

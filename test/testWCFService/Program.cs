@@ -90,7 +90,7 @@ namespace testWCFService
 			timer.Stop();
 			Console.WriteLine("Book ID query time:	{0}", timer.Elapsed);
 
-//			Console.ReadLine();
+			Console.ReadLine();
 		}
 	}
 }

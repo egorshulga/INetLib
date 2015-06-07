@@ -28,7 +28,7 @@ namespace BookExtractor
 		    catch (Exception)
 		    {
 //				Console.WriteLine("Failed to extract book file.");
-				Console.WriteLine("\nERROR: something went wrong while trying to extract a book {0}", book);
+				Console.WriteLine("ERROR: something went wrong while trying to extract a book {0}", book);
 				Console.WriteLine("Please, stop the server resetting settings and restart.");
 			    return Stream.Null;
 		    }

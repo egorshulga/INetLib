@@ -58,7 +58,7 @@ namespace WCFServiceLibrary
 
 		public Stream extractBook(BookEntity.BookEntity book)
 		{
-			Console.Write("Book query:	{0}", book);
+			Console.WriteLine("Book query:	{0}", book);
 			return BookExtractor.BookExtractor.extract(book);
 		}
 

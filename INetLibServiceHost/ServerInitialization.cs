@@ -6,191 +6,201 @@ namespace INetLibServiceHost
 {
 	static class ServerInitialization
 	{
-		private static string genresListPath;
+		private static string genresFilePath;
 		private static string metadataPath;
-		private static string booksFolderPath;
-//		private const string serverConfigurationFilePath = "config.ini";
+		private static string booksStoragePath;
 
 		public static void initialize()
 		{
-			getInitializationPaths();
+			Console.WriteLine("INetLibServer should be initialized before starting.");
+			
+			checkSettingsAndInitializeGenresList();
 
-			tryGenresInitialization();
+			checkSettingsAndInitializeMetadata();
 
-			tryMetadataDBInitialization();
-
-			tryBooksStorageInitialization();
-
-			saveConfigurationPathsToConfigFile();
-
+			checkSettingsAndInitializeBooksStorage();
+			
 			Console.WriteLine("Initialization finished. Starting service...");
 		}
 
 
-		private static void getInitializationPaths()
+
+
+		private static void checkSettingsAndInitializeGenresList()
 		{
-			if (!areSettingsNotSet())
+			setGenresListPath();
+
+			tryGenresInitialization();
+
+			saveGenresListPathToSettings();
+		}
+		private static void setGenresListPath()
+		{
+			if (isGenresFilePathSetInSettings())
 			{
-				Console.WriteLine("Settings found. Initializing...");
-				tryGetConfigurationPathsFromFile();
+				setGenresListPathFromSettings();
 			}
 			else
 			{
-				getConfigurationPathsFromUserInput();
+				setGenresListPathFromUserInput();
 			}
-			saveConfigurationPathsToConfigFile();
 		}
-
-		private static bool areSettingsNotSet()
+		private static bool isGenresFilePathSetInSettings()
 		{
-			return string.IsNullOrEmpty(Settings.Default.genresListPath)  || 
-				   string.IsNullOrEmpty(Settings.Default.metadataPath)    ||
-			       string.IsNullOrEmpty(Settings.Default.booksFolderPath);
+			return !string.IsNullOrEmpty(Settings.Default.genresListPath);
 		}
-
-		private static void tryGetConfigurationPathsFromFile()
+		private static void setGenresListPathFromSettings()
+		{
+			Console.WriteLine("Genres file path found in settings. Initializing...");
+			genresFilePath = Settings.Default.genresListPath;
+		}
+		private static void setGenresListPathFromUserInput()
+		{
+			Console.Write("Enter genres file path (.glst): ");
+			genresFilePath = Console.ReadLine();
+		}
+		private static void tryGenresInitialization()
 		{
 			try
 			{
-				getConfigurationPathsFromFile();
+				genresInitialization();
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-//				Console.WriteLine(e.Message);
-				getConfigurationPathsFromUserInput();
+				Console.WriteLine("Failed to fetch genres. ");
+
+				setGenresListPathFromUserInput();
+
+				tryGenresInitialization();
 			}
 		}
-
-		private static void getConfigurationPathsFromFile()
+		private static void genresInitialization()
 		{
-//			StreamReader configReader = new StreamReader(serverConfigurationFilePath);
-//			genresListPath = configReader.ReadLine();
-//			metadataPath = configReader.ReadLine();
-//			booksFolderPath = configReader.ReadLine();
-//			configReader.Close();
-
-			genresListPath = Settings.Default.genresListPath;
-			metadataPath = Settings.Default.metadataPath;
-			booksFolderPath = Settings.Default.booksFolderPath;
+			GenresList.GenresList.initialize(genresFilePath);
+			Console.WriteLine("Genres fetched successfully.");
 		}
-
-		private static void saveConfigurationPathsToConfigFile()
+		private static void saveGenresListPathToSettings()
 		{
-//			StreamWriter configWriter = new StreamWriter(serverConfigurationFilePath);
-//			configWriter.WriteLine(genresListPath);
-//			configWriter.WriteLine(metadataPath);
-//			configWriter.WriteLine(booksFolderPath);
-//			configWriter.Close();
-
-			Settings.Default.genresListPath = genresListPath;
-			Settings.Default.metadataPath = metadataPath;
-			Settings.Default.booksFolderPath = booksFolderPath;
+			Settings.Default.genresListPath = genresFilePath;
 			Settings.Default.Save();
 		}
 
-		private static void getConfigurationPathsFromUserInput()
-		{
-			getGenresListPathFromUserInput();
-			getMetadataPathFromUserInput();
-			getBooksPathFromUserInput();
-		}
 
-		private static void getGenresListPathFromUserInput()
-		{
-			Console.WriteLine("Enter genres file path (.glst): ");
-			genresListPath = Console.ReadLine();
-		}
 
-		private static void getMetadataPathFromUserInput()
+
+
+
+
+		private static void checkSettingsAndInitializeMetadata()
 		{
-			Console.WriteLine("Enter metadata file path (.inpx): ");
+			setMetadataFilePath();
+
+			tryMetadataInitialization();
+
+			saveMetadataPathToSettings();
+		}
+		private static void setMetadataFilePath()
+		{
+			if (isMetadataPathSetInSettings())
+			{
+				setMetadataPathFromSettings();
+			}
+			else
+			{
+				setMetadataPathFromUserInput();
+			}
+		}
+		private static bool isMetadataPathSetInSettings()
+		{
+			return !string.IsNullOrEmpty(Settings.Default.metadataPath);
+		}
+		private static void setMetadataPathFromSettings()
+		{
+			Console.WriteLine("Metadata file path found in settings. Initializing...");
+			metadataPath = Settings.Default.metadataPath;
+		}
+		private static void setMetadataPathFromUserInput()
+		{
+			Console.Write("Enter metadata file path (.inpx): ");
 			metadataPath = Console.ReadLine();
 		}
-
-		private static void getBooksPathFromUserInput()
+		private static void tryMetadataInitialization()
 		{
-			Console.WriteLine("Enter books archives folder path: ");
-			booksFolderPath = Console.ReadLine();
-		}
-
-
-
-		private static void tryGenresInitialization()
-		{
-			bool successfulInitialization = false;
-			while (!successfulInitialization)
+			try
 			{
-				try
-				{
-					genresInitialization();
-					successfulInitialization = true;
-				}
-				catch (Exception e)
-				{
-					successfulInitialization = false;
-					Console.WriteLine("Failed to fetch genres. ");
-					getGenresListPathFromUserInput();
-				}
+				metadataInitialization();
+			}
+			catch (Exception)
+			{
+				Console.WriteLine("Failed to fetch metadata. ");
+
+				setMetadataPathFromUserInput();
+
+				tryMetadataInitialization();
 			}
 		}
-
-		private static void genresInitialization()
-		{
-			GenresList.GenresList.initialize(genresListPath);
-			Console.WriteLine("Genres fetched.");
-		}
-
-		private static void tryMetadataDBInitialization()
-		{
-			bool successfulInitialization = false;
-			while (!successfulInitialization)
-			{
-				try
-				{
-					metadataDBInitialization();
-					successfulInitialization = true;
-				}
-				catch (Exception e)
-				{
-					successfulInitialization = false;
-					Console.WriteLine("Failed to fetch metadata. ");
-//					Console.WriteLine(e.Message);
-					getMetadataPathFromUserInput();
-				}
-			}
-		}
-
-		private static void metadataDBInitialization()
+		private static void metadataInitialization()
 		{
 			MetadataDB.MetadataList.initialize(metadataPath);
-			Console.WriteLine("Metadata fetched.");
+			Console.WriteLine("Metadata fetched successfully.");
 		}
 
-		private static void tryBooksStorageInitialization()
+		private static void saveMetadataPathToSettings()
 		{
-			bool successfulInitialization = false;
-			while (!successfulInitialization)
+			Settings.Default.metadataPath = metadataPath;
+			Settings.Default.Save();
+		}
+
+
+
+
+
+
+
+		private static void checkSettingsAndInitializeBooksStorage()
+		{
+			setBooksStoragePath();
+
+			initializeBooksStorage();
+
+			saveBooksStoragePathToSettings();
+		}
+		private static void setBooksStoragePath()
+		{
+			if (isBooksStoragePathSetInSettings())
 			{
-				try
-				{
-					if (string.IsNullOrEmpty(Settings.Default.booksFolderPath))
-						getBooksPathFromUserInput();
-					booksStorageInitialization();
-					successfulInitialization = true;
-				}
-				catch (Exception e)
-				{
-					successfulInitialization = false;
-					Console.WriteLine("Failed to fetch metadata. ");
-					getMetadataPathFromUserInput();
-				}
+				setBooksStoragePathFromSettings();
+			}
+			else
+			{
+				setBooksStoragePathFromUserInput();
 			}
 		}
-
-		private static void booksStorageInitialization()
+		private static bool isBooksStoragePathSetInSettings()
 		{
-			BookExtractor.BookExtractor.initialize(booksFolderPath);
+			return !string.IsNullOrEmpty(Settings.Default.booksFolderPath);
+		}
+
+		private static void setBooksStoragePathFromSettings()
+		{
+			Console.WriteLine("Books storage path found in settings. Initializing...");
+			booksStoragePath = Settings.Default.booksFolderPath;
+		}
+		private static void setBooksStoragePathFromUserInput()
+		{
+			Console.Write("Enter books archives folder path: ");
+			booksStoragePath = Console.ReadLine();
+		}
+
+		private static void initializeBooksStorage()
+		{
+			BookExtractor.BookExtractor.initialize(booksStoragePath);
 			Console.WriteLine("Books extractor initialized.");
+		}
+		private static void saveBooksStoragePathToSettings()
+		{
+			Settings.Default.booksFolderPath = booksStoragePath;
+			Settings.Default.Save();
 		}
 	}
 }

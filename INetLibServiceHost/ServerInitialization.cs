@@ -1,6 +1,6 @@
 ﻿using System;
-using System.IO;
 using INetLibServiceHost.Properties;
+using MetadataDB;
 
 namespace INetLibServiceHost
 {
@@ -141,7 +141,7 @@ namespace INetLibServiceHost
 		}
 		private static void metadataInitialization()
 		{
-			MetadataDB.MetadataList.initialize(metadataPath);
+			MetadataList.initialize(metadataPath);
 			Console.WriteLine("Metadata fetched successfully.");
 		}
 

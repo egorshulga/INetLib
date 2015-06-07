@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 
 namespace BookEntity
 {
-	[SuppressMessage("ReSharper", "ParameterHidesMember")]
 	[DataContract]
 	public class BookEntity
 	{

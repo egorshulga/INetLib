@@ -47,20 +47,17 @@ namespace MetadataDB
 		{
 			List<BookEntity.BookEntity> books = metadataList;
 
-//			if (!string.IsNullOrEmpty(template.authors.ToString()))
-				books = books.selectBooksByAuthor(template.authors[0].fullName);
+			books = books.selectBooksByAuthor(template.authors[0].fullName);
 
-//			if (!string.IsNullOrEmpty(template.title))
-				books = books.selectBooksByTitle(template.title);
+			books = books.selectBooksByTitle(template.title);
 
-//			if (template.genres.Count() != 0)
-				books = books.selectBooksByGenres(template.genres);
+			books = books.selectBooksByGenres(template.genres);
 
 			return books;
 		}
 
 
-			//Had to reimplement string.Contains method cause it does not work with case insensitive option
+		//Had to reimplement string.Contains method cause it does not work with case insensitive option
 		[SuppressMessage("ReSharper", "InconsistentNaming")]
 		private static bool Contains(this string source, string toCheck, StringComparison stringComparison)
 		{
